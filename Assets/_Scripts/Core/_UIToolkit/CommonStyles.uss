@@ -1,0 +1,221 @@
+:root {
+    --color-highlight: rgb(249, 194, 43);
+    --color-highlight-orange: rgb(251, 107, 29);
+    --color-main-green: rgb(22, 90, 76);
+    --font-size-small: 12px;
+    --font-size-normal: 34px;
+    --font-size-large: 48px;
+    --color-primary-dark: rgb(46, 34, 47);
+    --color-primary-dark-opaque: rgba(46, 34, 47, 0.8);
+    --color-primary-light: rgb(62, 53, 70);
+    --color-highlight-dark: rgb(98, 85, 101);
+    --color-highlight-dark1: rgb(105, 79, 98);
+    --color-highlight-dark2: rgb(127, 112, 138);
+    --color-highlight-light: rgb(143, 248, 226);
+    --color-highlight-light1: rgb(48, 225, 185);
+    --color-highlight-light2: rgb(14, 175, 155);
+    --color-highlight-secondary: rgb(247, 150, 23);
+    --color-white: rgb(255, 255, 255);
+    --color-metal-primary: rgb(199, 220, 208);
+    --color-metal-secondary: rgb(155, 171, 178);
+}
+
+.common__text-primary {
+    color: var(--color-white);
+    font-size: var(--font-size-normal);
+    -unity-text-align: middle-left;
+    -unity-font-definition: url("project://database/Assets/Art/Fonts/LuckiestGuy.ttf?fileID=12800000&guid=66f49d41b3cd153439f46cd983e62905&type=3#LuckiestGuy");
+}
+
+.common__text-primary-black {
+    color: rgb(0, 0, 0);
+    font-size: var(--font-size-normal);
+}
+
+.common__text-small {
+    font-size: var(--font-size-small);
+}
+
+.common__text-highlight {
+    color: var(--color-highlight);
+    font-size: var(--font-size-normal);
+    -unity-font-definition: initial;
+    -unity-font: url("project://database/Assets/Art/Fonts/LuckiestGuy.ttf?fileID=12800000&guid=66f49d41b3cd153439f46cd983e62905&type=3#LuckiestGuy");
+}
+
+.common__text-highlight-orange {
+    color: var(--color-highlight-orange);
+    font-size: var(--font-size-normal);
+    -unity-font-definition: initial;
+    -unity-font: url("project://database/Assets/Art/Fonts/LuckiestGuy.ttf?fileID=12800000&guid=66f49d41b3cd153439f46cd983e62905&type=3#LuckiestGuy");
+}
+
+.common__button-basic {
+    opacity: 0.8;
+    transition-property: all;
+    transition-duration: 0.5s;
+    transition-timing-function: ease-in-out-sine;
+    -unity-text-align: middle-center;
+}
+
+.common__button-basic:hover {
+    opacity: 1;
+    scale: 1.05 1.05;
+}
+
+.common__button-basic:active {
+    opacity: 1;
+    scale: 0.95 0.95;
+}
+
+.common__button-basic:disabled {
+    opacity: 0.5;
+    scale: 0.8 0.8;
+}
+
+.common__even-background {
+    background-color: var(--color-highlight-dark);
+}
+
+.common__odd-background {
+    background-color: var(--color-highlight-dark1);
+}
+
+.common__button {
+    color: var(--color-white);
+    font-size: 48px;
+    justify-content: center;
+    margin: 12px;
+    background-color: var(--color-highlight);
+    width: 300px;
+    min-height: 90px;
+    -unity-font-style: normal;
+    -unity-text-align: middle-center;
+    transition-property: all;
+    transition-duration: 0.5s;
+    transition-timing-function: ease-in-out-sine;
+    -unity-font-definition: initial;
+    -unity-font: url("project://database/Assets/Art/Fonts/LuckiestGuy.ttf?fileID=12800000&guid=66f49d41b3cd153439f46cd983e62905&type=3#LuckiestGuy");
+}
+
+.common__button:hover {
+    background-color: var(--color-highlight-secondary);
+    scale: 1.05 1.05;
+}
+
+.common__button:active {
+    scale: 0.95 0.95;
+}
+
+.common__button:disabled {
+    background-color: var(--color-highlight-dark2);
+    scale: 0.8 0.8;
+}
+
+.common__horizontal-spacer {
+    height: 50px;
+    width: 600px;
+    -unity-background-scale-mode: scale-to-fit;
+    align-self: center;
+}
+
+.common__vertical-spacer {
+    height: 50px;
+    width: 100%;
+    -unity-background-scale-mode: scale-to-fit;
+    rotate: 90deg;
+}
+
+.vfx {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.common__full-screen-main {
+    position: absolute;
+    align-self: center;
+    top: 4%;
+    width: 90%;
+    height: 92%;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: var(--color-main-green);
+    border-width: 4px;
+    border-color: var(--color-highlight);
+}
+
+.common__full-screen-title {
+    font-size: var(--font-size-large);
+    opacity: 0;
+    -unity-font-definition: initial;
+    -unity-font: url("project://database/Assets/Art/Fonts/LuckiestGuy.ttf?fileID=12800000&guid=66f49d41b3cd153439f46cd983e62905&type=3#LuckiestGuy");
+    margin-top: 40px;
+}
+
+.common__full-screen-content {
+    align-items: center;
+    align-self: center;
+    width: 100%;
+    height: 100%;
+    justify-content: flex-start;
+    padding: 2%;
+}
+
+.common__full-screen-utility-container {
+    width: 100%;
+    height: 18%;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.common__produce-element {
+    align-items: center;
+    flex-direction: row;
+}
+
+.common__produce-icon {
+    width: 40px;
+    height: 40px;
+}
+
+.common__produce-icon-small {
+    width: 40px;
+    height: 40px;
+}
+
+.common__end-market-container {
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    opacity: 0;
+    flex-wrap: wrap;
+    padding-top: 24px;
+    padding-bottom: 24px;
+}
+
+.common__car-element {
+    width: 400px;
+    padding: 20px;
+}
+
+.common__car-stat-icon {
+    width: 40px;
+    height: 40px;
+    -unity-background-scale-mode: scale-to-fit;
+    background-image: url("project://database/Assets/Art/Sprites/Produce/atlas-7.png?fileID=-732464577&guid=5a8e55f16a73daa488796901086dd1b2&type=3#atlas-7_3");
+}
+
+.common__multiplier-icon {
+    width: 75px;
+    height: 75px;
+    background-image: url("project://database/Assets/Art/Sprites/atlas-levelinfo.png?fileID=1168367172&guid=406478f8723040242b74ccfc82e4e536&type=3#atlas-levelinfo_0");
+}
+
+.common__expired-customer {
+    flex-grow: 1;
+    background-image: url("project://database/Assets/Plugins/UnityTechnologies/ParticlePack/EffectExamples/Misc%20Effects/Textures/DustMote.png?fileID=2800000&guid=394e93ce356b57344903a08ff72fcab2&type=3#DustMote");
+    background-size: 50px 50px;
+}
