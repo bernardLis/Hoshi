@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UIElements;
 
-namespace BountyBalance.Core
+namespace Hoshi.Core
 {
     public class FpsDisplayer : MonoBehaviour
     {

@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine;
 
-namespace BountyBalance.Core
+namespace Hoshi.Core
 {
     public class MusicFrequencyManager : Singleton<MusicFrequencyManager>
     {

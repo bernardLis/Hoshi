@@ -2,7 +2,7 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace BountyBalance.Core
+namespace Hoshi.Core
 {
     // https://stackoverflow.com/questions/58984486/create-scriptable-object-with-constant-unique-id
 

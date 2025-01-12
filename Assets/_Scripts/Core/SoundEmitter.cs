@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace BountyBalance.Core
+namespace Hoshi.Core
 {
     //https://www.youtube.com/watch?v=BgpqoRFCNOs&
     [RequireComponent(typeof(AudioSource))]

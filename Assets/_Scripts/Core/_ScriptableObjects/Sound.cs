@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.Audio;
 
-namespace BountyBalance.Core
+namespace Hoshi.Core
 {
     [CreateAssetMenu(menuName = "ScriptableObjects/Sound")]
     [Serializable]

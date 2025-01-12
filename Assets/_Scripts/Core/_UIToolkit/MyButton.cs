@@ -1,8 +1,7 @@
 using System;
-using BountyBalance.Core;
 using UnityEngine.UIElements;
 
-namespace BountyBalance
+namespace Hoshi.Core
 {
     public class MyButton : Button
     {

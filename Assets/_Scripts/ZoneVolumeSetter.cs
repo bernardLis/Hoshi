@@ -1,24 +1,27 @@
 using UnityEngine;
 
-public class ZoneVolumeSetter : MonoBehaviour
+namespace Hoshi
 {
-    AudioSource _audioSource;
-    [SerializeField] float _volume = 0.5f;
-
-    void Start()
+    public class ZoneVolumeSetter : MonoBehaviour
     {
-        _audioSource = GetComponentInParent<AudioSource>();
-    }
+        AudioSource _audioSource;
+        [SerializeField] float _volume = 0.5f;
 
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        Debug.Log("Enter");
-        if (other.CompareTag("Player"))
+        void Start()
         {
-            Debug.Log("player");
+            _audioSource = GetComponentInParent<AudioSource>();
+        }
 
-            _audioSource.volume = _volume;
+        void OnTriggerEnter2D(Collider2D other)
+        {
+            Debug.Log("Enter");
+            if (other.CompareTag("Player"))
+            {
+                Debug.Log("player");
 
+                _audioSource.volume = _volume;
+
+            }
         }
     }
 }

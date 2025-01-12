@@ -2,7 +2,7 @@ using System;
 using DG.Tweening;
 using UnityEngine.UIElements;
 
-namespace BountyBalance
+namespace Hoshi.Core
 {
     public class ContinueButton : MyButton
     {

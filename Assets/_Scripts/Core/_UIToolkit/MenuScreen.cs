@@ -1,9 +1,8 @@
-﻿using BountyBalance.Core;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
-namespace BountyBalance
+namespace Hoshi.Core
 {
     public class MenuScreen : FullScreenElement
     {

@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace BountyBalance.Core
+namespace Hoshi.Core
 {
     [CreateAssetMenu]
     public class IntVariable : ScriptableObject

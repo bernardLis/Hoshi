@@ -1,55 +1,56 @@
-using TarodevController;
 using UnityEngine;
-using UnityEngine.Serialization;
 
-public class CoinBlockController : MonoBehaviour
+namespace Hoshi
 {
-    CapsuleCollider2D _capsuleCollider;
-    SpriteRenderer _spriteRenderer;
-
-    [SerializeField] Sprite _activeBlockSprite;
-    [SerializeField] Sprite _spentBlockSprite;
-
-    [SerializeField] int _coins;
-    [SerializeField] GameObject _particles;
-
-    int _currentCoins;
-    ParticleSystem _particleSystem;
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public class CoinBlockController : MonoBehaviour
     {
-        _capsuleCollider = GetComponent<CapsuleCollider2D>();
-        _spriteRenderer = GetComponent<SpriteRenderer>();
+        CapsuleCollider2D _capsuleCollider;
+        SpriteRenderer _spriteRenderer;
 
-        _particleSystem = _particles.GetComponent<ParticleSystem>();
+        [SerializeField] Sprite _activeBlockSprite;
+        [SerializeField] Sprite _spentBlockSprite;
 
-        PlayerController.Instance.OnDeath += Reset;
+        [SerializeField] int _coins;
+        [SerializeField] GameObject _particles;
 
-        Reset();
-    }
+        int _currentCoins;
+        ParticleSystem _particleSystem;
 
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        if (!other.TryGetComponent(out PlayerController playerController)) return;
+        // Start is called once before the first execution of Update after the MonoBehaviour is created
+        void Start()
+        {
+            _capsuleCollider = GetComponent<CapsuleCollider2D>();
+            _spriteRenderer = GetComponent<SpriteRenderer>();
 
-        _particleSystem.Play();
-        playerController.AddCoin();
-        _currentCoins--;
-        if (_currentCoins == 0)
-            EndCoins();
-    }
+            _particleSystem = _particles.GetComponent<ParticleSystem>();
 
-    void EndCoins()
-    {
-        _capsuleCollider.enabled = false;
-        _spriteRenderer.sprite = _spentBlockSprite;
-    }
+            PlayerController.Instance.OnDeath += Reset;
 
-    void Reset()
-    {
-        _capsuleCollider.enabled = true;
-        _currentCoins = _coins;
-        _spriteRenderer.sprite = _activeBlockSprite;
+            Reset();
+        }
+
+        void OnTriggerEnter2D(Collider2D other)
+        {
+            if (!other.TryGetComponent(out PlayerController playerController)) return;
+
+            _particleSystem.Play();
+            playerController.AddCoin();
+            _currentCoins--;
+            if (_currentCoins == 0)
+                EndCoins();
+        }
+
+        void EndCoins()
+        {
+            _capsuleCollider.enabled = false;
+            _spriteRenderer.sprite = _spentBlockSprite;
+        }
+
+        void Reset()
+        {
+            _capsuleCollider.enabled = true;
+            _currentCoins = _coins;
+            _spriteRenderer.sprite = _activeBlockSprite;
+        }
     }
 }

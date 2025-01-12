@@ -3,12 +3,12 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
 
-namespace BountyBalance.Core
+namespace Hoshi.Core
 {
     public class ConsoleManager : MonoBehaviour
     {
         GameManager _gameManager;
-        PlayerInput _playerInput;
+        UnityEngine.InputSystem.PlayerInput _playerInput;
 
         static string _myLog = "";
 
@@ -20,7 +20,7 @@ namespace BountyBalance.Core
         void Start()
         {
             _gameManager = GetComponent<GameManager>();
-            _playerInput = GetComponent<PlayerInput>();
+            _playerInput = GetComponent<UnityEngine.InputSystem.PlayerInput>();
 
             VisualElement root = GetComponent<UIDocument>().rootVisualElement;
 
@@ -33,7 +33,7 @@ namespace BountyBalance.Core
         {
             if (_gameManager == null)
                 _gameManager = GameManager.Instance;
-            _playerInput = _gameManager.GetComponent<PlayerInput>();
+            _playerInput = _gameManager.GetComponent<UnityEngine.InputSystem.PlayerInput>();
             UnsubscribeInputActions();
             SubscribeInputActions();
 

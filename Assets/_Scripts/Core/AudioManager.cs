@@ -7,7 +7,7 @@ using UnityEngine.Audio;
 using UnityEngine.Pool;
 
 //https://www.youtube.com/watch?v=6OT43pvUyfY
-namespace BountyBalance.Core
+namespace Hoshi.Core
 {
     public class AudioManager : Singleton<AudioManager>
     {

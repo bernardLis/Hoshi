@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace BountyBalance.Core
+namespace Hoshi.Core
 {
     // https://www.youtube.com/watch?v=tE1qH8OxO2Y&t=223s
     /// <summary>

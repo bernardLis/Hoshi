@@ -1,9 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
-namespace TarodevController
+namespace Hoshi
 {
     public class PlayerAnimator : MonoBehaviour
     {
@@ -11,10 +10,7 @@ namespace TarodevController
         private Animator _anim;
 
         [SerializeField] private GameObject _effectsParent;
-        [SerializeField] private Transform _trailRenderer;
         [SerializeField] private SpriteRenderer _sprite;
-        [SerializeField] private TrailRenderer _trail;
-
 
         [Header("Particles")] [SerializeField] private ParticleSystem _jumpParticles;
         [SerializeField] private ParticleSystem _launchParticles;
@@ -34,24 +30,17 @@ namespace TarodevController
         [SerializeField] private AudioClip[] _slideClips;
         [SerializeField] private AudioClip _wallGrabClip;
 
-
         private AudioSource _source;
         private IPlayerController _player;
         private Vector2 _defaultSpriteSize;
         private GeneratedCharacterSize _character;
-        private Vector3 _trailOffset;
-        private Vector2 _trailVel;
 
         private void Awake()
         {
             _source = GetComponent<AudioSource>();
             _player = GetComponentInParent<IPlayerController>();
             _character = _player.Stats.CharacterSize.GenerateCharacterSize();
-            _defaultSpriteSize = new Vector2(1, _character.Height);
-
-            _trailOffset = _trailRenderer.localPosition;
-            _trailRenderer.SetParent(null);
-            _originalTrailTime = _trail.time;
+            _defaultSpriteSize = new(1, _character.Height);
         }
 
         private void OnEnable()
@@ -60,7 +49,6 @@ namespace TarodevController
             _player.GroundedChanged += OnGroundedChanged;
             _player.DashChanged += OnDashChanged;
             _player.WallGrabChanged += OnWallGrabChanged;
-            _player.Repositioned += PlayerOnRepositioned;
             _player.ToggledPlayer += PlayerOnToggledPlayer;
 
             _moveParticles.Play();
@@ -72,7 +60,6 @@ namespace TarodevController
             _player.GroundedChanged -= OnGroundedChanged;
             _player.DashChanged -= OnDashChanged;
             _player.WallGrabChanged -= OnWallGrabChanged;
-            _player.Repositioned -= PlayerOnRepositioned;
             _player.ToggledPlayer -= PlayerOnToggledPlayer;
 
             _moveParticles.Stop();
@@ -90,21 +77,14 @@ namespace TarodevController
 
             HandleIdleSpeed(xInput);
 
-            HandleCharacterTilt(xInput);
-
-            HandleCrouching();
+            //HandleCrouching();
 
             HandleWallSlideEffects();
         }
 
-        private void LateUpdate()
-        {
-            _trailRenderer.position = Vector2.SmoothDamp(_trailRenderer.position, transform.position + _trailOffset,
-                ref _trailVel, 0.02f);
-        }
-
         #region Squish
 
+/*
         [Header("Squish")] [SerializeField] private ParticleSystem.MinMaxCurve _squishMinMaxX;
         [SerializeField] private ParticleSystem.MinMaxCurve _squishMinMaxY;
         [SerializeField] private float _minSquishForce = 6f;
@@ -147,6 +127,7 @@ namespace TarodevController
             _isSquishing = false;
             if (_squishRoutine != null) StopCoroutine(_squishRoutine);
         }
+*/
 
         #endregion
 
@@ -259,38 +240,10 @@ namespace TarodevController
 
         #endregion
 
-        #region Tilt
-
-        [Header("Tilt")] [SerializeField] private float _runningTilt = 5; // In degrees around the Z axis
-        [SerializeField] private float _maxTilt = 10; // In degrees around the Z axis
-        [SerializeField] private float _tiltSmoothTime = 0.1f;
-
-        private Vector3 _currentTiltVelocity;
-
-        private void HandleCharacterTilt(float xInput)
-        {
-            var runningTilt = _grounded ? Quaternion.Euler(0, 0, _runningTilt * xInput) : Quaternion.identity;
-            var targetRot = _grounded && _player.GroundNormal != _player.Up
-                ? runningTilt * _player.GroundNormal
-                : runningTilt * _player.Up;
-
-            // Calculate the smooth damp effect
-            var smoothRot =
-                Vector3.SmoothDamp(_anim.transform.up, targetRot, ref _currentTiltVelocity, _tiltSmoothTime);
-
-            if (Vector3.Angle(_player.Up, smoothRot) > _maxTilt)
-            {
-                smoothRot = Vector3.RotateTowards(_player.Up, smoothRot, Mathf.Deg2Rad * _maxTilt, 0f);
-            }
-
-            // Rotate towards the smoothed target
-            _anim.transform.up = smoothRot;
-        }
-
-        #endregion
 
         #region Crouch & Slide
 
+/*
         private bool _crouching;
         private Vector2 _currentCrouchSizeVelocity;
 
@@ -316,8 +269,10 @@ namespace TarodevController
                     ref _currentCrouchSizeVelocity, 0.03f);
             }
         }
+*/
 
         #endregion
+
 
         #region Event Callbacks
 
@@ -354,8 +309,8 @@ namespace TarodevController
             if (grounded)
             {
                 _anim.SetBool(AnimGrounded, true);
-                CancelSquish();
-                _squishRoutine = StartCoroutine(SquishPlayer(Mathf.Abs(impact)));
+                //    CancelSquish();
+                //    _squishRoutine = StartCoroutine(SquishPlayer(Mathf.Abs(impact)));
                 _source.PlayOneShot(_splats[Random.Range(0, _splats.Length)], 0.5f);
                 _moveParticles.Play();
 
@@ -387,20 +342,6 @@ namespace TarodevController
         }
 
         #endregion
-
-        private float _originalTrailTime;
-
-        private void PlayerOnRepositioned(Vector2 newPosition)
-        {
-            StartCoroutine(ResetTrail());
-
-            IEnumerator ResetTrail()
-            {
-                _trail.time = 0;
-                yield return new WaitForSeconds(0.1f);
-                _trail.time = _originalTrailTime;
-            }
-        }
 
         private void PlayerOnToggledPlayer(bool on)
         {

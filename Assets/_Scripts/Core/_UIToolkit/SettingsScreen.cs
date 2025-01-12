@@ -1,10 +1,8 @@
 using System.Collections.Generic;
-using BountyBalance.Core;
 using UnityEngine;
 using UnityEngine.UIElements;
-using UnityEngine.SceneManagement;
 
-namespace BountyBalance
+namespace Hoshi.Core
 {
     public class SettingsScreen : FullScreenElement
     {

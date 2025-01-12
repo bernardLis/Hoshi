@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
 
-namespace BountyBalance.Core
+namespace Hoshi.Core
 {
     public class GameManager : PersistentSingleton<GameManager>
     {
@@ -12,7 +12,7 @@ namespace BountyBalance.Core
         public readonly List<FullScreenElement> OpenFullScreens = new();
         public VisualElement Root { get; private set; }
 
-        PlayerInput _playerInput;
+        UnityEngine.InputSystem.PlayerInput _playerInput;
         LevelLoader _levelLoader;
 
         void Start()
@@ -39,7 +39,7 @@ namespace BountyBalance.Core
         /* INPUT */
         void OnEnable()
         {
-            _playerInput = GetComponent<PlayerInput>();
+            _playerInput = GetComponent<UnityEngine.InputSystem.PlayerInput>();
 
             UnsubscribeInputActions();
             SubscribeInputActions();
@@ -103,7 +103,7 @@ namespace BountyBalance.Core
             if (OpenFullScreens.Count == 0) ResumeGame();
         }
 
-        void OnControlsChanged(PlayerInput obj)
+        void OnControlsChanged(UnityEngine.InputSystem.PlayerInput obj)
         {
             Debug.Log($"Controls changed {obj.currentControlScheme}");
         }

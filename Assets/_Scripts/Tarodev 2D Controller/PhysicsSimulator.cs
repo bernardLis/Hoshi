@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace TarodevController
+namespace Hoshi
 {
     public class PhysicsSimulator : MonoBehaviour
     {
@@ -59,7 +59,8 @@ namespace TarodevController
     {
         public bool UsesBounding { get; }
 
-        [Tooltip("The player requires grounding on the platform at least once before the grounding effector takes effect")]
+        [Tooltip(
+            "The player requires grounding on the platform at least once before the grounding effector takes effect")]
         public bool RequireGrounding { get; }
 
         public Vector2 FramePositionDelta { get; }

@@ -4,7 +4,7 @@
 TagManager:
   serializedVersion: 3
   tags:
-  - Destroy Block
+  - Block Interactor
   layers:
   - Default
   - TransparentFX
@@ -12,11 +12,11 @@ TagManager:
   - Player
   - Water
   - UI
-  - 
+  - Block
   - Player
   - Climbable
   - Ladders
-  - 
+  - Enemy
   - 
   - 
   - 

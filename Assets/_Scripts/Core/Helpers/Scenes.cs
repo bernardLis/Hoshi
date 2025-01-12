@@ -1,4 +1,4 @@
-﻿namespace BountyBalance.Core
+﻿namespace Hoshi.Core
 {
     public class Scenes
     {

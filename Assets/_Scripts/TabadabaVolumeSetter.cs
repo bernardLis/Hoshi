@@ -1,33 +1,36 @@
 using System.Collections;
-using BountyBalance.Core;
+using Hoshi.Core;
 using UnityEngine;
 
-public class TabadabaVolumeSetter : MonoBehaviour
+namespace Hoshi
 {
-    [SerializeField] Transform _player;
-    [SerializeField] float _maxX;
-
-    AudioSource _audioSource;
-
-    IEnumerator _volumeCoroutine;
-
-    void Start()
+    public class TabadabaVolumeSetter : MonoBehaviour
     {
-        _audioSource = GetComponent<AudioSource>();
+        [SerializeField] Transform _player;
+        [SerializeField] float _maxX;
 
-        _volumeCoroutine = VolumeSettingCoroutine();
-        StartCoroutine(_volumeCoroutine);
-    }
+        AudioSource _audioSource;
 
-    IEnumerator VolumeSettingCoroutine()
-    {
-        while (true)
+        IEnumerator _volumeCoroutine;
+
+        void Start()
         {
-            if (this == null) yield break;
+            _audioSource = GetComponent<AudioSource>();
 
-            _audioSource.volume = _player.transform.position.x.Remap(-10f, _maxX, 0, 1);
+            _volumeCoroutine = VolumeSettingCoroutine();
+            StartCoroutine(_volumeCoroutine);
+        }
 
-            yield return new WaitForSeconds(0.1f);
+        IEnumerator VolumeSettingCoroutine()
+        {
+            while (true)
+            {
+                if (this == null) yield break;
+
+                _audioSource.volume = _player.transform.position.x.Remap(-10f, _maxX, 0, 1);
+
+                yield return new WaitForSeconds(0.1f);
+            }
         }
     }
 }

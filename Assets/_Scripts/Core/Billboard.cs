@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace BountyBalance.Core
+namespace Hoshi.Core
 {
     public class Billboard : MonoBehaviour
     {

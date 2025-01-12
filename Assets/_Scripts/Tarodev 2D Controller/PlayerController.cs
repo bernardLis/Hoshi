@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
-using BountyBalance.Core;
+using Hoshi.Core;
 using UnityEngine;
 
-namespace TarodevController
+namespace Hoshi
 {
     [RequireComponent(typeof(Rigidbody2D), typeof(BoxCollider2D), typeof(CapsuleCollider2D))]
     public class PlayerController : Singleton<PlayerController>, IPlayerController, IPhysicsObject
@@ -1060,7 +1060,7 @@ namespace TarodevController
         public Vector2 Modifier { get; }
     }
 
-    // Used to save and load character state
+// Used to save and load character state
     public struct ControllerState
     {
         public Vector2 Position;

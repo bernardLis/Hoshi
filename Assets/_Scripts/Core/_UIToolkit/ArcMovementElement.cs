@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UIElements;
 
-namespace BountyBalance
+namespace Hoshi.Core
 {
     public class ArcMovementElement : VisualElement
     {

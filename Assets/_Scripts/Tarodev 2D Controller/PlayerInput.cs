@@ -1,10 +1,8 @@
+using TarodevController;
 using UnityEngine;
-
-#if ENABLE_INPUT_SYSTEM
 using UnityEngine.InputSystem;
-#endif
 
-namespace TarodevController
+namespace Hoshi
 {
     public class PlayerInput : MonoBehaviour
     {

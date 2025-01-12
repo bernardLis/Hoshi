@@ -1,10 +1,9 @@
 using System;
-using BountyBalance.Core;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-namespace BountyBalance
+namespace Hoshi.Core
 {
     public class FullScreenElement : VisualElement
     {

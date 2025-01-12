@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 // See https://github.com/adammyhre/Unity-Utils for more extension methods
-namespace BountyBalance.Core
+namespace Hoshi.Core
 {
     public static class Vector3Extensions
     {

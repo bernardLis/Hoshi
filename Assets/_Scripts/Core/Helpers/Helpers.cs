@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UIElements;
 
-namespace BountyBalance.Core
+namespace Hoshi.Core
 {
     public static class Helpers
     {

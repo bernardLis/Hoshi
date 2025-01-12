@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
-namespace BountyBalance.Core
+namespace Hoshi.Core
 {
     public class LevelLoader : MonoBehaviour
     {

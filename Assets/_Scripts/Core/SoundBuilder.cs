@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace BountyBalance.Core
+namespace Hoshi.Core
 {
     //https://www.youtube.com/watch?v=BgpqoRFCNOs&t=335s
     public class SoundBuilder
