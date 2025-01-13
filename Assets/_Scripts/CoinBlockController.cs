@@ -2,10 +2,9 @@ using UnityEngine;
 
 namespace Hoshi
 {
-    public class CoinBlockController : MonoBehaviour
+    public class BlockControllerCoin : BlockController
     {
         CapsuleCollider2D _capsuleCollider;
-        SpriteRenderer _spriteRenderer;
 
         [SerializeField] Sprite _activeBlockSprite;
         [SerializeField] Sprite _spentBlockSprite;
@@ -17,14 +16,12 @@ namespace Hoshi
         ParticleSystem _particleSystem;
 
         // Start is called once before the first execution of Update after the MonoBehaviour is created
-        void Start()
+        protected override void Start()
         {
+            base.Start();
+
             _capsuleCollider = GetComponent<CapsuleCollider2D>();
-            _spriteRenderer = GetComponent<SpriteRenderer>();
-
             _particleSystem = _particles.GetComponent<ParticleSystem>();
-
-            PlayerController.Instance.OnDeath += Reset;
 
             Reset();
         }
@@ -34,7 +31,7 @@ namespace Hoshi
             if (!other.TryGetComponent(out PlayerController playerController)) return;
 
             _particleSystem.Play();
-            playerController.AddCoin();
+            PlatformerManager.AddCoin();
             _currentCoins--;
             if (_currentCoins == 0)
                 EndCoins();
@@ -43,14 +40,15 @@ namespace Hoshi
         void EndCoins()
         {
             _capsuleCollider.enabled = false;
-            _spriteRenderer.sprite = _spentBlockSprite;
+            SpriteRenderer.sprite = _spentBlockSprite;
         }
 
-        void Reset()
+        protected override void Reset()
         {
+            base.Reset();
             _capsuleCollider.enabled = true;
             _currentCoins = _coins;
-            _spriteRenderer.sprite = _activeBlockSprite;
+            SpriteRenderer.sprite = _activeBlockSprite;
         }
     }
 }

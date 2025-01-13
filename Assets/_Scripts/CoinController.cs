@@ -5,10 +5,13 @@ namespace Hoshi
 {
     public class CoinController : MonoBehaviour
     {
+        PlatformerManager _platformerManager;
+
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start()
         {
-            PlayerController.Instance.OnDeath += Reset;
+            _platformerManager = PlatformerManager.Instance;
+            _platformerManager.OnResetLevel += Reset;
             Reset();
         }
 
@@ -25,7 +28,7 @@ namespace Hoshi
         void OnTriggerEnter2D(Collider2D other)
         {
             if (!other.TryGetComponent(out PlayerController playerController)) return;
-            playerController.AddCoin();
+            _platformerManager.AddCoin();
             gameObject.SetActive(false);
             transform.DOKill();
         }

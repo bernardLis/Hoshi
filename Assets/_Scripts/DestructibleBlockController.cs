@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Hoshi
 {
-    public class DestructibleBlockController : MonoBehaviour
+    public class DestructibleBlockController : BlockController
     {
         CapsuleCollider2D _capsuleCollider;
         BoxCollider2D _boxCollider;
@@ -11,13 +11,13 @@ namespace Hoshi
         [SerializeField] GameObject _particles;
 
         // Start is called once before the first execution of Update after the MonoBehaviour is created
-        void Start()
+        protected override void Start()
         {
+            base.Start();
             _capsuleCollider = GetComponent<CapsuleCollider2D>();
             _boxCollider = GetComponentInChildren<BoxCollider2D>();
             _spriteRenderer = GetComponent<SpriteRenderer>();
 
-            PlayerController.Instance.OnDeath += Reset;
             Reset();
         }
 
@@ -31,7 +31,7 @@ namespace Hoshi
             _spriteRenderer.enabled = false;
         }
 
-        void Reset()
+        protected override void Reset()
         {
             _particles.SetActive(false);
             _capsuleCollider.enabled = true;

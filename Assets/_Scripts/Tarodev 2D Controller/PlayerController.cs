@@ -6,14 +6,9 @@ using UnityEngine;
 namespace Hoshi
 {
     [RequireComponent(typeof(Rigidbody2D), typeof(BoxCollider2D), typeof(CapsuleCollider2D))]
-    public class PlayerController : Singleton<PlayerController>, IPlayerController, IPhysicsObject
+    public class PlayerController : MonoBehaviour, IPlayerController, IPhysicsObject
     {
         #region MyRegion
-
-        int _coins;
-
-        public event Action OnDeath;
-        public event Action<int> OnCoinCountChanged;
 
         void CheckYPosition()
         {
@@ -25,15 +20,7 @@ namespace Hoshi
         void Die()
         {
             transform.position = Vector3.zero;
-            _coins = 0;
-            OnCoinCountChanged?.Invoke(_coins);
-            OnDeath?.Invoke();
-        }
-
-        public void AddCoin()
-        {
-            _coins++;
-            OnCoinCountChanged?.Invoke(_coins);
+            PlatformerManager.Instance.ResetLevel();
         }
 
         #endregion
@@ -109,11 +96,8 @@ namespace Hoshi
 
         private float _delta, _time;
 
-        protected override void Awake()
+        void Awake()
         {
-            base.Awake();
-            _coins = 0;
-
             if (!TryGetComponent(out _playerInput)) _playerInput = gameObject.AddComponent<PlayerInput>();
             if (!TryGetComponent(out _constantForce)) _constantForce = gameObject.AddComponent<ConstantForce2D>();
 
