@@ -31,7 +31,7 @@ namespace Hoshi
             if (!other.TryGetComponent(out PlayerController playerController)) return;
 
             _particleSystem.Play();
-            PlatformerManager.AddCoin();
+            PlatformerManager.ChangeCoin(1);
             _currentCoins--;
             if (_currentCoins == 0)
                 EndCoins();

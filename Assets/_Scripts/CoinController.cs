@@ -28,7 +28,7 @@ namespace Hoshi
         void OnTriggerEnter2D(Collider2D other)
         {
             if (!other.TryGetComponent(out PlayerController playerController)) return;
-            _platformerManager.AddCoin();
+            _platformerManager.ChangeCoin(1);
             gameObject.SetActive(false);
             transform.DOKill();
         }

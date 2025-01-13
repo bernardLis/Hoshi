@@ -1,29 +1,66 @@
 using System;
 using Hoshi.Core;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace Hoshi
 {
     public class PlatformerManager : Singleton<PlatformerManager>
     {
         int _coins;
+        int _score;
+
+        VisualElement _root;
+
+        ChangingValueElement _scoreValueElement;
+        Label _coinCountLabel;
 
         public event Action OnResetLevel;
-        public event Action<int> OnCoinCountChanged;
 
-        // Start is called once before the first execution of Update after the MonoBehaviour is created
+        void Start()
+        {
+            _root = GetComponent<UIDocument>().rootVisualElement;
+
+            _coinCountLabel = _root.Q<Label>("coinCountLabel");
+            _coinCountLabel.text = _coins.ToString();
+
+            _scoreValueElement = new();
+            _scoreValueElement.Initialize(0, 34);
+            _root.Q<VisualElement>("scoreContainer").Add(_scoreValueElement);
+
+            ResetLevel();
+        }
+
         public void ResetLevel()
         {
-            _coins = 0;
+            SetCoin(0);
+            SetScore(0);
 
-            OnCoinCountChanged?.Invoke(_coins);
             OnResetLevel?.Invoke();
         }
 
-        public void AddCoin()
+        public void ChangeScore(int change)
         {
-            _coins++;
-            OnCoinCountChanged?.Invoke(_coins);
+            SetScore(_score + change);
+        }
+
+        void SetScore(int score)
+        {
+            _score = score;
+            _scoreValueElement.ChangeAmount(_score);
+        }
+
+        public void ChangeCoin(int change)
+        {
+            SetCoin(_coins + change);
+            ChangeScore(100);
+            _coinCountLabel.text = _coins.ToString();
+        }
+
+        void SetCoin(int coin)
+        {
+            _coins = coin;
+            _coinCountLabel.text = _coins.ToString();
         }
     }
 }

@@ -24,7 +24,7 @@
     color: var(--color-white);
     font-size: var(--font-size-normal);
     -unity-text-align: middle-left;
-    -unity-font-definition: url("project://database/Assets/Art/Fonts/LuckiestGuy.ttf?fileID=12800000&guid=66f49d41b3cd153439f46cd983e62905&type=3#LuckiestGuy");
+    -unity-font-definition: url("project://database/Library/unity%20default%20resources?fileID=10102&guid=0000000000000000e000000000000000&type=0#LegacyRuntime");
 }
 
 .common__text-primary-black {
@@ -40,14 +40,14 @@
     color: var(--color-highlight);
     font-size: var(--font-size-normal);
     -unity-font-definition: initial;
-    -unity-font: url("project://database/Assets/Art/Fonts/LuckiestGuy.ttf?fileID=12800000&guid=66f49d41b3cd153439f46cd983e62905&type=3#LuckiestGuy");
+    -unity-font: url('project://database/Assets/Art/Fonts/LuckiestGuy.ttf?fileID=12800000&guid=66f49d41b3cd153439f46cd983e62905&type=3#LuckiestGuy');
 }
 
 .common__text-highlight-orange {
     color: var(--color-highlight-orange);
     font-size: var(--font-size-normal);
     -unity-font-definition: initial;
-    -unity-font: url("project://database/Assets/Art/Fonts/LuckiestGuy.ttf?fileID=12800000&guid=66f49d41b3cd153439f46cd983e62905&type=3#LuckiestGuy");
+    -unity-font: url('project://database/Assets/Art/Fonts/LuckiestGuy.ttf?fileID=12800000&guid=66f49d41b3cd153439f46cd983e62905&type=3#LuckiestGuy');
 }
 
 .common__button-basic {
@@ -95,7 +95,7 @@
     transition-duration: 0.5s;
     transition-timing-function: ease-in-out-sine;
     -unity-font-definition: initial;
-    -unity-font: url("project://database/Assets/Art/Fonts/LuckiestGuy.ttf?fileID=12800000&guid=66f49d41b3cd153439f46cd983e62905&type=3#LuckiestGuy");
+    -unity-font: url('project://database/Assets/Art/Fonts/LuckiestGuy.ttf?fileID=12800000&guid=66f49d41b3cd153439f46cd983e62905&type=3#LuckiestGuy');
 }
 
 .common__button:hover {
@@ -149,7 +149,7 @@
     font-size: var(--font-size-large);
     opacity: 0;
     -unity-font-definition: initial;
-    -unity-font: url("project://database/Assets/Art/Fonts/LuckiestGuy.ttf?fileID=12800000&guid=66f49d41b3cd153439f46cd983e62905&type=3#LuckiestGuy");
+    -unity-font: url('project://database/Assets/Art/Fonts/LuckiestGuy.ttf?fileID=12800000&guid=66f49d41b3cd153439f46cd983e62905&type=3#LuckiestGuy');
     margin-top: 40px;
 }
 
@@ -205,17 +205,17 @@
     width: 40px;
     height: 40px;
     -unity-background-scale-mode: scale-to-fit;
-    background-image: url("project://database/Assets/Art/Sprites/Produce/atlas-7.png?fileID=-732464577&guid=5a8e55f16a73daa488796901086dd1b2&type=3#atlas-7_3");
+    background-image: url('project://database/Assets/Art/Sprites/Produce/atlas-7.png?fileID=-732464577&guid=5a8e55f16a73daa488796901086dd1b2&type=3#atlas-7_3');
 }
 
 .common__multiplier-icon {
     width: 75px;
     height: 75px;
-    background-image: url("project://database/Assets/Art/Sprites/atlas-levelinfo.png?fileID=1168367172&guid=406478f8723040242b74ccfc82e4e536&type=3#atlas-levelinfo_0");
+    background-image: url('project://database/Assets/Art/Sprites/atlas-levelinfo.png?fileID=1168367172&guid=406478f8723040242b74ccfc82e4e536&type=3#atlas-levelinfo_0');
 }
 
 .common__expired-customer {
     flex-grow: 1;
-    background-image: url("project://database/Assets/Plugins/UnityTechnologies/ParticlePack/EffectExamples/Misc%20Effects/Textures/DustMote.png?fileID=2800000&guid=394e93ce356b57344903a08ff72fcab2&type=3#DustMote");
+    background-image: url('project://database/Assets/Plugins/UnityTechnologies/ParticlePack/EffectExamples/Misc%20Effects/Textures/DustMote.png?fileID=2800000&guid=394e93ce356b57344903a08ff72fcab2&type=3#DustMote');
     background-size: 50px 50px;
 }
