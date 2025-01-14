@@ -43,6 +43,12 @@ namespace Hoshi
             _defaultSpriteSize = new(1, _character.Height);
         }
 
+        void OnFloatingGameStarted()
+        {
+            _sprite.enabled = false;
+            _landParticles.Play();
+        }
+
         private void OnEnable()
         {
             _player.Jumped += OnJumped;

@@ -11,6 +11,7 @@ namespace Hoshi
         #region MyRegion
 
         PlatformerManager _platformerManager;
+        public bool IsMovingDisabled;
 
         void Start()
         {
@@ -27,7 +28,7 @@ namespace Hoshi
 
         void Reset()
         {
-            transform.position = Vector3.zero;
+            transform.position = new Vector3(200, 0, 0); //Vector3.zero;
         }
 
         #endregion
@@ -204,6 +205,7 @@ namespace Hoshi
 
         private void GatherInput()
         {
+            if (IsMovingDisabled) return;
             _frameInput = _playerInput.Gather();
 
             if (_frameInput.JumpDown)
@@ -788,6 +790,8 @@ namespace Hoshi
 
         private void Move()
         {
+            if (IsMovingDisabled) return;
+
             if (_forceToApplyThisFrame != Vector2.zero)
             {
                 _rb.linearVelocity += AdditionalFrameVelocities();
