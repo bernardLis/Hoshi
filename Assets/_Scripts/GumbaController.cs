@@ -2,6 +2,8 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using DG.Tweening;
+using Hoshi.Core;
+using MoreMountains.Feedbacks;
 using UnityEngine;
 
 namespace Hoshi
@@ -16,6 +18,7 @@ namespace Hoshi
         Rigidbody2D _rigidbody;
         BoxCollider2D _boxCollider;
         SpriteRenderer _spriteRenderer;
+        MMF_Player _feelPlayer;
 
         Vector3 _startPosition;
 
@@ -37,6 +40,7 @@ namespace Hoshi
             _rigidbody = GetComponent<Rigidbody2D>();
             _boxCollider = GetComponent<BoxCollider2D>();
             _spriteRenderer = GetComponent<SpriteRenderer>();
+            _feelPlayer = GetComponent<MMF_Player>();
 
             _startPosition = transform.position;
 
@@ -65,7 +69,11 @@ namespace Hoshi
             if (_isDead) return;
             _isDead = true;
 
-            if (isKilledByPlayer) _platformerManager.ChangeScore(100);
+            if (isKilledByPlayer)
+            {
+                _platformerManager.ChangeScore(100);
+                DisplayFloatingText("100", Color.white);
+            }
 
             _walkCancellation?.Cancel();
             _walkCancellation = null;
@@ -201,6 +209,18 @@ namespace Hoshi
                 Die(true);
             else
                 KillPlayer();
+        }
+
+
+        void DisplayFloatingText(string text, Color color)
+        {
+            if (_feelPlayer == null) return;
+            MMF_FloatingText floatingText = _feelPlayer.GetFeedbackOfType<MMF_FloatingText>();
+            floatingText.Value = text;
+            floatingText.ForceColor = true;
+            floatingText.AnimateColorGradient = Helpers.GetFakeGradient(color);
+            Transform t = transform;
+            _feelPlayer.PlayFeedbacks(t.position);
         }
     }
 }

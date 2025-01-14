@@ -18,13 +18,13 @@
     --color-white: rgb(255, 255, 255);
     --color-metal-primary: rgb(199, 220, 208);
     --color-metal-secondary: rgb(155, 171, 178);
+    -unity-font-definition: url("project://database/Assets/Plugins/Feel/MMTools/Demos/MMTween/Fonts/Lato/TTF/Lato-Regular.ttf?fileID=12800000&guid=5686e06ef14cf104b8e282ee7c41b9a6&type=3#Lato-Regular");
 }
 
 .common__text-primary {
     color: var(--color-white);
     font-size: var(--font-size-normal);
     -unity-text-align: middle-left;
-    -unity-font-definition: url("project://database/Library/unity%20default%20resources?fileID=10102&guid=0000000000000000e000000000000000&type=0#LegacyRuntime");
 }
 
 .common__text-primary-black {
