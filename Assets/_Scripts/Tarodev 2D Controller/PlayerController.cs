@@ -10,17 +10,24 @@ namespace Hoshi
     {
         #region MyRegion
 
+        PlatformerManager _platformerManager;
+
+        void Start()
+        {
+            _platformerManager = PlatformerManager.Instance;
+            _platformerManager.OnResetLevel += Reset;
+        }
+
         void CheckYPosition()
         {
             // check if player falls and reset their position
             if (transform.position.y > -10) return;
-            Die();
+            _platformerManager.ResetLevel();
         }
 
-        void Die()
+        void Reset()
         {
             transform.position = Vector3.zero;
-            PlatformerManager.Instance.ResetLevel();
         }
 
         #endregion
@@ -198,7 +205,6 @@ namespace Hoshi
         private void GatherInput()
         {
             _frameInput = _playerInput.Gather();
-
 
             if (_frameInput.JumpDown)
             {

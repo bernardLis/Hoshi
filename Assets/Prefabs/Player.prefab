@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1969292109115252591}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Audio
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 3054942119778330325}
   - component: {fileID: 3054942119778330331}
   - component: {fileID: 3054942119778330324}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Double Jump Particles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4934,7 +4934,7 @@ GameObject:
   - component: {fileID: 3054942119837435223}
   - component: {fileID: 3054942119837435221}
   - component: {fileID: 3054942119837435222}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Move Particles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9767,7 +9767,7 @@ GameObject:
   - component: {fileID: 3054942119893454497}
   - component: {fileID: 3054942119893454503}
   - component: {fileID: 3054942119893454496}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Jump Particles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14659,7 +14659,7 @@ GameObject:
   - component: {fileID: 3054942120025842299}
   - component: {fileID: 3054942120025842297}
   - component: {fileID: 3054942120025842298}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: DashRing Particles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19548,7 +19548,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3054942120045712701}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Dash Ring
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19582,7 +19582,7 @@ GameObject:
   - component: {fileID: 3054942120376258708}
   - component: {fileID: 3054942120376258714}
   - component: {fileID: 3054942120376258713}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Visual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19766,7 +19766,7 @@ GameObject:
   - component: {fileID: 3054942120541986088}
   - component: {fileID: 537198729}
   - component: {fileID: 5731089695359280883}
-  m_Layer: 7
+  m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19786,6 +19786,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 716974536682441999}
   - {fileID: 3054942120376258708}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -19922,7 +19923,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3054942120628204831}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Particles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19962,7 +19963,7 @@ GameObject:
   - component: {fileID: 3054942120714206839}
   - component: {fileID: 3054942120714206837}
   - component: {fileID: 3054942120714206838}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20072,7 +20073,7 @@ GameObject:
   - component: {fileID: 3054942120786680126}
   - component: {fileID: 3054942120786680124}
   - component: {fileID: 3054942120786680125}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Dash Particles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24905,7 +24906,7 @@ GameObject:
   - component: {fileID: 3054942121060292282}
   - component: {fileID: 3054942121060292280}
   - component: {fileID: 3054942121060292281}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Launch Particles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29796,7 +29797,7 @@ GameObject:
   - component: {fileID: 3054942121100908043}
   - component: {fileID: 3054942121100908041}
   - component: {fileID: 3054942121100908042}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Land Particles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34685,7 +34686,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1889462166521372650}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Effects
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34720,7 +34721,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4932264274632542143}
   - component: {fileID: 5970203659758147100}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: WallClimbSource
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34839,6 +34840,84 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &4774680357974780847
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 716974536682441999}
+  - component: {fileID: 143891983016469820}
+  m_Layer: 3
+  m_Name: My Player Collider
+  m_TagString: Player
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &716974536682441999
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4774680357974780847}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.54, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3054942120541986095}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &143891983016469820
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4774680357974780847}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0.35}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 0.65, y: 0.26}
+  m_EdgeRadius: 0
 --- !u!1 &7092977998462913754
 GameObject:
   m_ObjectHideFlags: 0
@@ -34850,7 +34929,7 @@ GameObject:
   - component: {fileID: 2237058942330626287}
   - component: {fileID: 8629632398674961167}
   - component: {fileID: 2592551389070341704}
-  m_Layer: 7
+  m_Layer: 3
   m_Name: Wall Slide Particles
   m_TagString: Untagged
   m_Icon: {fileID: 0}

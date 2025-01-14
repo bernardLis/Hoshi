@@ -4,39 +4,26 @@ namespace Hoshi
 {
     public class DestructibleBlockController : BlockController
     {
-        CapsuleCollider2D _capsuleCollider;
-        BoxCollider2D _boxCollider;
-        SpriteRenderer _spriteRenderer;
-
         [SerializeField] GameObject _particles;
 
-        // Start is called once before the first execution of Update after the MonoBehaviour is created
         protected override void Start()
         {
             base.Start();
-            _capsuleCollider = GetComponent<CapsuleCollider2D>();
-            _boxCollider = GetComponentInChildren<BoxCollider2D>();
-            _spriteRenderer = GetComponent<SpriteRenderer>();
-
             Reset();
         }
 
-        void OnTriggerEnter2D(Collider2D other)
+        protected override void CollisionWithPlayer()
         {
-            if (!other.TryGetComponent(out PlayerController playerController)) return;
-
             _particles.SetActive(true);
-            _capsuleCollider.enabled = false;
-            _boxCollider.enabled = false;
-            _spriteRenderer.enabled = false;
+            BoxCollider2D.enabled = false;
+            SpriteRenderer.enabled = false;
         }
 
         protected override void Reset()
         {
             _particles.SetActive(false);
-            _capsuleCollider.enabled = true;
-            _spriteRenderer.enabled = true;
-            _boxCollider.enabled = true;
+            SpriteRenderer.enabled = true;
+            BoxCollider2D.enabled = true;
         }
     }
 }
