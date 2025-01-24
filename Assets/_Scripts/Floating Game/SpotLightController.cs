@@ -23,7 +23,7 @@ namespace Hoshi
 
             }
 
-            FloatingGameManager.Instance.OnFloatingGameStarted += StartLightsMovement;
+            // FloatingGameManager.Instance.OnFloatingGameStarted += StartLightsMovement;
 
         }
 

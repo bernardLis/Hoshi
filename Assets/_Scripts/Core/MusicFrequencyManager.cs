@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections;
+using System.Linq;
 using UnityEngine;
 
 namespace Hoshi.Core
 {
     public class MusicFrequencyManager : Singleton<MusicFrequencyManager>
     {
-        AudioManager _audioManager;
+        AudioSource _audioSource;
 
         readonly float _bufferDecreaseValue = 0.005f;
         readonly float _bufferDecreaseRate = 1.2f;
@@ -23,11 +24,15 @@ namespace Hoshi.Core
         float _amplitudeHighest;
         float _amplitudeBuffer;
 
-        public event Action<float[], float> OnFrequencyBandUpdate;
+        float[] _smoothBuffer = new float[100];
+        int _smoothBufferIndex = 0;
+        float _smoothBufferAverage;
+
+        public event Action<float[], float, float> OnFrequencyBandUpdate;
 
         public void Initialize()
         {
-            _audioManager = AudioManager.Instance;
+            _audioSource = GetComponent<AudioSource>();
             AudioProfile();
             StartCoroutine(UpdateFrequenciesCoroutine());
         }
@@ -46,15 +51,29 @@ namespace Hoshi.Core
             while (true)
             {
                 if (this == null) yield break;
-                _audioManager.GetMusicSpectrumData(_spectrumData);
+                _audioSource.GetSpectrumData(_spectrumData, 0, FFTWindow.Blackman);
                 UpdateFrequencyBands();
                 UpdateBandBuffers();
                 CreateAudioBands();
                 UpdateAmplitude();
-                OnFrequencyBandUpdate?.Invoke(_audioBandBuffer, _amplitudeBuffer);
+                UpdateSmootherBuffer();
+
+
+                OnFrequencyBandUpdate?.Invoke(_audioBandBuffer, _amplitudeBuffer, _smoothBufferAverage);
 
                 yield return new WaitForSeconds(0.01f);
             }
+        }
+
+        void UpdateSmootherBuffer()
+        {
+            _smoothBuffer[_smoothBufferIndex] = _amplitudeBuffer;
+            _smoothBufferIndex++;
+            if (_smoothBufferIndex >= _smoothBuffer.Length) _smoothBufferIndex = 0;
+
+            //get average from smooth buffer array
+            float sum = _smoothBuffer.Sum();
+            _smoothBufferAverage = sum / _smoothBuffer.Length;
         }
 
         void UpdateAmplitude()

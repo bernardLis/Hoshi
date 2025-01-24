@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using Hoshi.Core;
 using UnityEngine;
 
 namespace Hoshi
@@ -10,18 +12,25 @@ namespace Hoshi
         [SerializeField] GameObject _panelPrefab;
         [SerializeField] float _speed;
 
+
         List<PanelController> _panels;
 
         IEnumerator _scrollCoroutine;
 
         [SerializeField] List<ColorList> _colorLists = new();
 
+
         void Start()
         {
             InstantiatePanels();
 
             FloatingGameManager.Instance.OnFloatingGameStarted += StartScrolling;
-            //    StartScrolling();
+            MusicFrequencyManager.Instance.OnFrequencyBandUpdate += InstanceOnOnFrequencyBandUpdate;
+        }
+
+        void InstanceOnOnFrequencyBandUpdate(float[] audioBandBuffer, float amplitudeBuffer, float smootherBuffer)
+        {
+            _speed = smootherBuffer * 20;
         }
 
         void InstantiatePanels()
@@ -40,7 +49,10 @@ namespace Hoshi
         void StartScrolling()
         {
             foreach (PanelController panel in _panels)
+            {
                 panel.gameObject.SetActive(true);
+                panel.Run();
+            }
 
             _scrollCoroutine = ScrollingCoroutine();
             StartCoroutine(_scrollCoroutine);

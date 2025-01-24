@@ -14,6 +14,10 @@ namespace Hoshi
         public void Initialize(ColorList colorList)
         {
             _colors = new(colorList.Colors);
+        }
+
+        public void Run()
+        {
             StartCoroutine(ChangeColorCoroutine());
         }
 

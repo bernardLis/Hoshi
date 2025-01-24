@@ -28,12 +28,17 @@ namespace Hoshi
 
         void Reset()
         {
-            transform.position = new (200, 0, 0); //Vector3.zero;
+            transform.position = new(200, 0, 0); //Vector3.zero;
         }
 
         public void JumpKill()
         {
             _rb.AddForce(Vector2.up * 500f);
+        }
+
+        public void StartFloatingGame()
+        {
+            _rb.AddForce(Vector2.up * 2500f);
         }
 
         #endregion

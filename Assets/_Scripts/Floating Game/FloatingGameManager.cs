@@ -13,12 +13,14 @@ namespace Hoshi
     {
         const string _ussCommonSongTitleLetter = "common__song-title-letter";
 
-
         BoxCollider2D _boxCollider2D;
 
         [SerializeField] CinemachineCamera _floatingGameCamera;
         [SerializeField] FloatingPlayerController _floatingPlayerControllerPrefab;
         [SerializeField] GameObject[] _walls;
+
+        [Header("Audio")]
+        [SerializeField] AudioSource _tadabadaSource;
 
         PlayerController _playerController;
 
@@ -26,7 +28,7 @@ namespace Hoshi
         Label _artistsLabel;
         VisualElement _songTitleContainerTop;
         VisualElement _songTitleContainerBottom;
-        List<Label> _titleLabels = new();
+        readonly List<Label> _titleLabels = new();
 
         bool _isFloatingGameStarted;
         public event Action OnFloatingGameStarted;
@@ -58,8 +60,23 @@ namespace Hoshi
             if (_isFloatingGameStarted) return;
             _isFloatingGameStarted = true;
 
+            GetComponent<MusicFrequencyManager>().Initialize();
+
+            _tadabadaSource.Stop();
+            GetComponent<AudioSource>().Play();
+
+            // StartCoroutine(SyncAudioCoroutine());
             StartCoroutine(FloatingGameSetupCoroutine());
         }
+
+        // IEnumerator SyncAudioCoroutine()
+        // {
+        //     // while (_tadabadaSource.isPlaying)
+        //     // {
+        //     //     yield return null;
+        //     // }
+        //
+        // }
 
         IEnumerator FloatingGameSetupCoroutine()
         {
@@ -70,16 +87,14 @@ namespace Hoshi
 
             _artistsLabel.style.display = DisplayStyle.Flex;
 
-            yield return new WaitForSeconds(3f);
+            yield return new WaitForSeconds(4f);
 
             _artistsLabel.style.display = DisplayStyle.None;
             yield return PrintSongTitle();
             yield return new WaitForSeconds(2f);
 
 
-            // StartFloatingGame();
-
-            yield return null;
+            yield return StartFloatingGame();
         }
 
         IEnumerator PrintSongTitle()
@@ -101,26 +116,31 @@ namespace Hoshi
                 l.text = c.ToString();
                 _titleLabels.Add(l);
                 currentContainer.Add(l);
-                yield return new WaitForSeconds(0.2f);
+                yield return new WaitForSeconds(0.4f);
             }
 
             for (int i = 0; i < title.Length; i++)
             {
                 _titleLabels[i].text = "";
-                yield return new WaitForSeconds(0.2f);
+                yield return new WaitForSeconds(0.4f);
             }
 
             _songTitleContainerTop.style.display = DisplayStyle.None;
             _songTitleContainerBottom.style.display = DisplayStyle.None;
+
         }
 
-        void StartFloatingGame()
+        IEnumerator StartFloatingGame()
         {
+            _playerController.StartFloatingGame();
+            yield return new WaitForSeconds(0.2f);
             _floatingGameCamera.transform.DOMoveY(3, 1f);
             FloatingPlayerController floatingPlayerController =
                 Instantiate(_floatingPlayerControllerPrefab, _playerController.transform.position, Quaternion.identity);
             floatingPlayerController.Initialize(_playerController.GetComponent<Rigidbody2D>().linearVelocity);
+
             _playerController.gameObject.SetActive(false);
+            yield return new WaitForSeconds(0.2f);
 
             OnFloatingGameStarted?.Invoke();
         }

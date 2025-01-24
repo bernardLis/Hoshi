@@ -29,7 +29,7 @@ namespace Hoshi
 
                 _audioSource.volume = _player.transform.position.x.Remap(-10f, _maxX, 0, 1);
 
-                yield return new WaitForSeconds(0.1f);
+                yield return new WaitForSeconds(0.01f);
             }
         }
     }

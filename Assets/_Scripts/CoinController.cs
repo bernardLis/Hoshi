@@ -9,7 +9,7 @@ namespace Hoshi
         PlatformerManager _platformerManager;
 
         // Start is called once before the first execution of Update after the MonoBehaviour is created
-        void Start()
+        protected virtual void Start()
         {
             _startPosition = transform.position;
             _platformerManager = PlatformerManager.Instance;
@@ -27,7 +27,6 @@ namespace Hoshi
                 .SetLoops(-1, LoopType.Yoyo)
                 .SetEase(Ease.InOutBounce);
         }
-
 
         void OnTriggerEnter2D(Collider2D other)
         {
