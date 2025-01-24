@@ -1,6 +1,5 @@
 using System;
 using System.Threading;
-using System.Threading.Tasks;
 using DG.Tweening;
 using Hoshi.Core;
 using MoreMountains.Feedbacks;
@@ -25,8 +24,6 @@ namespace Hoshi
         CancellationTokenSource _walkCancellation;
         CancellationTokenSource _checkYPositionCancellation;
         CancellationTokenSource _bounceFromWallsCancellation;
-        CancellationTokenSource _checkPlayerJumpCancellation;
-        CancellationTokenSource _killCheckCancellation;
 
         [SerializeField] float _speed = 10f;
         bool _isDead;
@@ -75,6 +72,8 @@ namespace Hoshi
                 DisplayFloatingText("100", Color.white);
             }
 
+            _boxCollider.enabled = false;
+
             _walkCancellation?.Cancel();
             _walkCancellation = null;
 
@@ -85,8 +84,7 @@ namespace Hoshi
             _bounceFromWallsCancellation = null;
 
             _animator.SetTrigger(AnimDie);
-            _spriteRenderer.DOColor(new(1, 1, 1, 0), 4f).OnComplete(
-                () => _boxCollider.enabled = false);
+            _spriteRenderer.DOColor(new(1, 1, 1, 0), 4f);
         }
 
         async void StartWalking()
@@ -99,8 +97,9 @@ namespace Hoshi
             }
             catch (Exception e)
             {
-                if (e is not OperationCanceledException)
-                    Debug.LogException(e);
+                if (e is OperationCanceledException)
+                {
+                }
                 else
                     throw; // TODO handle exception
             }
@@ -123,7 +122,7 @@ namespace Hoshi
 
                 _rigidbody.MovePosition(transform.position - move * Time.fixedDeltaTime);
 
-                await Awaitable.FixedUpdateAsync();
+                await Awaitable.FixedUpdateAsync(cancellationToken);
             }
         }
 
@@ -137,8 +136,9 @@ namespace Hoshi
             }
             catch (Exception e)
             {
-                if (e is not TaskCanceledException)
-                    Debug.LogException(e);
+                if (e is OperationCanceledException)
+                {
+                }
                 else
                     throw; // TODO handle exception
             }
@@ -152,7 +152,7 @@ namespace Hoshi
                 if (cancellationToken.IsCancellationRequested) break;
                 if (transform.position.y < -10f) Die();
 
-                await Awaitable.WaitForSecondsAsync(1f);
+                await Awaitable.WaitForSecondsAsync(1f, cancellationToken);
             }
         }
 
@@ -167,8 +167,9 @@ namespace Hoshi
             }
             catch (Exception e)
             {
-                if (e is not TaskCanceledException)
-                    Debug.LogException(e);
+                if (e is OperationCanceledException)
+                {
+                }
                 else
                     throw; // TODO handle exception
             }
@@ -187,7 +188,7 @@ namespace Hoshi
 
                 if (hitWall) transform.Rotate(Vector3.up * 180f);
 
-                await Awaitable.WaitForSecondsAsync(0.1f);
+                await Awaitable.WaitForSecondsAsync(0.1f, cancellationToken);
             }
         }
 
@@ -206,11 +207,13 @@ namespace Hoshi
         void HandlePlayerCollision(PlayerController playerController)
         {
             if (playerController.transform.position.y > transform.position.y)
+            {
+                playerController.JumpKill();
                 Die(true);
+            }
             else
                 KillPlayer();
         }
-
 
         void DisplayFloatingText(string text, Color color)
         {

@@ -1,6 +1,6 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using DG.Tweening;
-using Hoshi.Core;
 using UnityEngine;
 
 namespace Hoshi
@@ -9,8 +9,11 @@ namespace Hoshi
     {
         [SerializeField] SpriteRenderer[] _spriteRenderers;
 
-        public void Initialize()
+        List<Color> _colors = new();
+
+        public void Initialize(ColorList colorList)
         {
+            _colors = new(colorList.Colors);
             StartCoroutine(ChangeColorCoroutine());
         }
 
@@ -22,7 +25,7 @@ namespace Hoshi
 
                 foreach (SpriteRenderer sr in _spriteRenderers)
                 {
-                    sr.DOColor(Helpers.AllResurrectColors[Random.Range(0, Helpers.AllResurrectColors.Length)],
+                    sr.DOColor(_colors[Random.Range(0, _colors.Count)],
                         Random.Range(2f, 3f));
                 }
 

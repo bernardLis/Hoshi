@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,11 +14,14 @@ namespace Hoshi
 
         IEnumerator _scrollCoroutine;
 
+        [SerializeField] List<ColorList> _colorLists = new();
+
         void Start()
         {
             InstantiatePanels();
-            //FloatingGameManager.Instance.OnFloatingGameStarted += StartScrolling;
-            StartScrolling();
+
+            FloatingGameManager.Instance.OnFloatingGameStarted += StartScrolling;
+            //    StartScrolling();
         }
 
         void InstantiatePanels()
@@ -26,14 +30,18 @@ namespace Hoshi
             for (int i = -1; i < 2; i++)
             {
                 PanelController panel = Instantiate(_panelPrefab, transform).GetComponent<PanelController>();
-                panel.Initialize();
+                panel.Initialize(_colorLists[i + 1]);
                 panel.transform.localPosition = new(1.9f, -15f * i, 0);
+                panel.gameObject.SetActive(false);
                 _panels.Add(panel);
             }
         }
 
         void StartScrolling()
         {
+            foreach (PanelController panel in _panels)
+                panel.gameObject.SetActive(true);
+
             _scrollCoroutine = ScrollingCoroutine();
             StartCoroutine(_scrollCoroutine);
         }
@@ -46,7 +54,7 @@ namespace Hoshi
 
                 foreach (PanelController panel in _panels)
                 {
-                    panel.transform.Translate(Vector3.down * _speed * Time.deltaTime);
+                    panel.transform.Translate(Vector3.down * (_speed * Time.deltaTime));
                     if (panel.transform.position.y < -17f)
                     {
                         float highest = -17;
@@ -67,8 +75,14 @@ namespace Hoshi
                     }
                 }
 
-                yield return new WaitForSeconds(0.01f);
+                yield return null;
             }
         }
+    }
+
+    [Serializable]
+    public struct ColorList
+    {
+        public List<Color> Colors;
     }
 }
