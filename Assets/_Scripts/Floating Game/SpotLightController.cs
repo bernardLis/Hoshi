@@ -20,15 +20,35 @@ namespace Hoshi
             {
                 _lights[i].transform.localPosition = _endPositions[3 - i];
                 _lights[i].gameObject.SetActive(false);
-
             }
 
-            // FloatingGameManager.Instance.OnFloatingGameStarted += StartLightsMovement;
+            FloatingGameManager.Instance.OnFloatingGameStarted += StartLightsMovement;
+            FloatingGameManager.Instance.OnFloatingGameFinished += Stop;
+        }
 
+        void Stop(Vector3 endPos)
+        {
+            for (int i = 0; i < _lights.Count; i++)
+            {
+                _lights[i].DOKill();
+                _lights[i].transform.DOMove(endPos, 0.5f).OnComplete(DisableLights);
+            }
+        }
+
+        void DisableLights()
+        {
+            foreach (Light2D t in _lights)
+            {
+                t.gameObject.SetActive(false);
+            }
         }
 
         void StartLightsMovement()
         {
+            for (int i = 0; i < _lights.Count; i++)
+            {
+                _lights[i].gameObject.SetActive(true);
+            }
 
             for (int i = 0; i < _lights.Count; i++)
             {

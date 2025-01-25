@@ -15,12 +15,17 @@ namespace Hoshi
 
         BoxCollider2D _boxCollider2D;
 
+        [SerializeField] PlayerStats _playerStats;
+
         [SerializeField] CinemachineCamera _floatingGameCamera;
         [SerializeField] FloatingPlayerController _floatingPlayerControllerPrefab;
+        FloatingPlayerController _floatingPlayerController;
         [SerializeField] GameObject[] _walls;
 
         [Header("Audio")]
         [SerializeField] AudioSource _tadabadaSource;
+
+        [SerializeField] AudioSource _floatingGameSource;
 
         PlayerController _playerController;
 
@@ -29,9 +34,13 @@ namespace Hoshi
         VisualElement _songTitleContainerTop;
         VisualElement _songTitleContainerBottom;
         readonly List<Label> _titleLabels = new();
+        VisualElement _doubleJumpContainer;
 
         bool _isFloatingGameStarted;
         public event Action OnFloatingGameStarted;
+        public event Action OnFloatingGame10SecondsUntilFinished;
+
+        public event Action<Vector3> OnFloatingGameFinished;
 
         void Start()
         {
@@ -39,8 +48,11 @@ namespace Hoshi
             _artistsLabel = _root.Q<Label>("artistsLabel");
             _songTitleContainerTop = _root.Q<VisualElement>("songTitleContainerTop");
             _songTitleContainerBottom = _root.Q<VisualElement>("songTitleContainerBottom");
+            _doubleJumpContainer = _root.Q<VisualElement>("doubleJumpContainer");
 
             _boxCollider2D = GetComponent<BoxCollider2D>();
+
+            _playerStats.MaxAirJumps = 0;
         }
 
         void OnTriggerExit2D(Collider2D other)
@@ -63,25 +75,51 @@ namespace Hoshi
             GetComponent<MusicFrequencyManager>().Initialize();
 
             _tadabadaSource.Stop();
-            GetComponent<AudioSource>().Play();
+            _floatingGameSource.Play();
 
-            // StartCoroutine(SyncAudioCoroutine());
             StartCoroutine(FloatingGameSetupCoroutine());
+            StartCoroutine(FinishGameCoroutine());
         }
 
-        // IEnumerator SyncAudioCoroutine()
-        // {
-        //     // while (_tadabadaSource.isPlaying)
-        //     // {
-        //     //     yield return null;
-        //     // }
-        //
-        // }
+        IEnumerator FinishGameCoroutine()
+        {
+            yield return new WaitForSeconds(170f);
+            OnFloatingGame10SecondsUntilFinished?.Invoke();
+            yield return new WaitForSeconds(10f);
+
+            _floatingPlayerController.DisableMovement();
+            _floatingGameCamera.transform.DOMoveY(1.2f, 4f);
+            _floatingPlayerController.transform.DOMoveY(-4.5f, 4f);
+            yield return new WaitForSeconds(4f);
+            _floatingGameCamera.Priority = -1;
+            _playerController.transform.position = _floatingPlayerController.transform.position;
+            _floatingPlayerController.gameObject.SetActive(false);
+            _playerController.gameObject.SetActive(true);
+
+
+            GetComponent<MusicFrequencyManager>().Stop();
+            _walls[0].SetActive(false);
+
+            _playerStats.MaxAirJumps = 1;
+            DisplayDoubleJumpText();
+
+            OnFloatingGameFinished?.Invoke(_playerController.transform.position);
+        }
+
+        void DisplayDoubleJumpText()
+        {
+            _doubleJumpContainer.style.opacity = 0;
+            _doubleJumpContainer.style.display = DisplayStyle.Flex;
+            DOTween.To(x => _doubleJumpContainer.style.opacity = x,
+                _doubleJumpContainer.style.opacity.value, 1, 0.5f).SetDelay(2f);
+
+            DOTween.To(x => _doubleJumpContainer.style.opacity = x,
+                    _doubleJumpContainer.style.opacity.value, 0, 0.5f)
+                .SetDelay(5f).OnComplete(() => _doubleJumpContainer.style.display = DisplayStyle.None);
+        }
 
         IEnumerator FloatingGameSetupCoroutine()
         {
-            foreach (GameObject wall in _walls) wall.SetActive(true);
-            _walls[^1].SetActive(false); // south
             _floatingGameCamera.Priority = 1;
             yield return new WaitForSeconds(2f);
 
@@ -92,7 +130,6 @@ namespace Hoshi
             _artistsLabel.style.display = DisplayStyle.None;
             yield return PrintSongTitle();
             yield return new WaitForSeconds(2f);
-
 
             yield return StartFloatingGame();
         }
@@ -127,7 +164,6 @@ namespace Hoshi
 
             _songTitleContainerTop.style.display = DisplayStyle.None;
             _songTitleContainerBottom.style.display = DisplayStyle.None;
-
         }
 
         IEnumerator StartFloatingGame()
@@ -135,9 +171,9 @@ namespace Hoshi
             _playerController.StartFloatingGame();
             yield return new WaitForSeconds(0.2f);
             _floatingGameCamera.transform.DOMoveY(3, 1f);
-            FloatingPlayerController floatingPlayerController =
+            _floatingPlayerController =
                 Instantiate(_floatingPlayerControllerPrefab, _playerController.transform.position, Quaternion.identity);
-            floatingPlayerController.Initialize(_playerController.GetComponent<Rigidbody2D>().linearVelocity);
+            _floatingPlayerController.Initialize(_playerController.GetComponent<Rigidbody2D>().linearVelocity);
 
             _playerController.gameObject.SetActive(false);
             yield return new WaitForSeconds(0.2f);

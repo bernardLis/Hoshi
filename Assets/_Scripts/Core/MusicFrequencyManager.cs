@@ -37,6 +37,11 @@ namespace Hoshi.Core
             StartCoroutine(UpdateFrequenciesCoroutine());
         }
 
+        public void Stop()
+        {
+            StopAllCoroutines();
+        }
+
         void AudioProfile()
         {
             _amplitudeHighest = 5;

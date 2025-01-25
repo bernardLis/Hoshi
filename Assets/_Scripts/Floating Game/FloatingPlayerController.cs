@@ -14,7 +14,7 @@ namespace Hoshi
         Vector2 _currentVelocity;
 
         [SerializeField] float _speed = 2f;
-
+        bool _movementDisabled;
 
         void Start()
         {
@@ -29,6 +29,7 @@ namespace Hoshi
 
         void FixedUpdate()
         {
+            if (_movementDisabled) return;
             _rigidbody2D.linearVelocity =
                 Vector2.Lerp(_rigidbody2D.linearVelocity, _targetVelocity, Time.fixedDeltaTime);
             _targetVelocity = _frameInput.Move.normalized * _speed;
@@ -37,6 +38,11 @@ namespace Hoshi
         public void Initialize(Vector2 linearVelocity)
         {
             _targetVelocity = linearVelocity;
+        }
+
+        public void DisableMovement()
+        {
+            _movementDisabled = true;
         }
     }
 }

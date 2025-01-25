@@ -12,6 +12,12 @@ namespace Hoshi
         void Start()
         {
             FloatingGameManager.Instance.OnFloatingGameStarted += Run;
+            FloatingGameManager.Instance.OnFloatingGame10SecondsUntilFinished += Stop;
+        }
+
+        void Stop()
+        {
+            StopAllCoroutines();
         }
 
         void Run()
@@ -30,7 +36,7 @@ namespace Hoshi
                 int count = Random.Range(1, 4);
                 for (int i = 0; i < count; i++)
                 {
-                    Vector3 pos = new(Random.Range(207f, 233f), 12, 0);
+                    Vector3 pos = new(Random.Range(207f, 233f), 15, 0);
                     GravityCoinController c = Instantiate(_coinPrefab, pos, Quaternion.identity)
                         .GetComponent<GravityCoinController>();
                     c.Initialize();
