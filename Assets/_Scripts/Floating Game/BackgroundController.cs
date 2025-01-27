@@ -2,7 +2,7 @@ using System.Collections;
 using DG.Tweening;
 using UnityEngine;
 
-namespace Hoshi
+namespace Hoshi.Floating_Game
 {
     public class BackgroundController : MonoBehaviour
     {

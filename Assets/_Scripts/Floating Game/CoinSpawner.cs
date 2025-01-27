@@ -1,9 +1,8 @@
-using System;
 using System.Collections;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace Hoshi
+namespace Hoshi.Floating_Game
 {
     public class CoinSpawner : MonoBehaviour
     {

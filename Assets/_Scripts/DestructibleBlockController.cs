@@ -1,3 +1,4 @@
+using Hoshi.Core;
 using UnityEngine;
 
 namespace Hoshi
@@ -14,6 +15,8 @@ namespace Hoshi
 
         protected override void CollisionWithPlayer()
         {
+            base.CollisionWithPlayer();
+
             _particles.SetActive(true);
             BoxCollider2D.enabled = false;
             SpriteRenderer.enabled = false;

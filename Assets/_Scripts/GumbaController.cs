@@ -11,6 +11,9 @@ namespace Hoshi
     {
         static readonly int AnimDie = Animator.StringToHash("Die");
 
+        [SerializeField] Sound _deathSound;
+
+        AudioManager _audioManager;
         PlatformerManager _platformerManager;
 
         Animator _animator;
@@ -30,6 +33,8 @@ namespace Hoshi
 
         void Start()
         {
+            _audioManager = AudioManager.Instance;
+
             _platformerManager = PlatformerManager.Instance;
             _platformerManager.OnResetLevel += Reset;
 
@@ -68,6 +73,7 @@ namespace Hoshi
 
             if (isKilledByPlayer)
             {
+                _audioManager.CreateSound().WithSound(_deathSound).WithPosition(transform.position).Play();
                 _platformerManager.ChangeScore(100);
                 DisplayFloatingText("100", Color.white);
             }
@@ -192,10 +198,10 @@ namespace Hoshi
             }
         }
 
-        void KillPlayer()
+        void KillPlayer(PlayerController playerController)
         {
             if (_isDead) return;
-            _platformerManager.ResetLevel();
+            playerController.PlayerDeath();
         }
 
         void OnCollisionEnter2D(Collision2D other)
@@ -212,7 +218,7 @@ namespace Hoshi
                 Die(true);
             }
             else
-                KillPlayer();
+                KillPlayer(playerController);
         }
 
         void DisplayFloatingText(string text, Color color)

@@ -1,7 +1,6 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace Hoshi
+namespace Hoshi.Floating_Game
 {
     public class FloatingPlayerController : MonoBehaviour
     {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 
-namespace Hoshi
+namespace Hoshi.Floating_Game
 {
     public class PanelController : MonoBehaviour
     {

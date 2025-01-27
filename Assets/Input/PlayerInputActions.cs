@@ -51,7 +51,7 @@ namespace TarodevController
                     ""name"": ""Dash"",
                     ""type"": ""Button"",
                     ""id"": ""4a78c075-3464-45ca-8581-812805a2fdf7"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -69,6 +69,24 @@ namespace TarodevController
                     ""name"": ""ExampleAction"",
                     ""type"": ""Button"",
                     ""id"": ""fac85392-9cd4-4c47-a8da-8911e5b74689"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""OpenMenu"",
+                    ""type"": ""Button"",
+                    ""id"": ""106c2ece-d0fd-4bed-8b2c-dee0b8c72875"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ToggleConsole"",
+                    ""type"": ""Button"",
+                    ""id"": ""73794e63-ded8-401d-ad02-bfbf2a576a7c"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -317,6 +335,28 @@ namespace TarodevController
                     ""action"": ""ExampleAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1efe882f-28a9-47d8-b75c-5e40db93f7b0"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""OpenMenu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""65559776-ae66-40ee-87c8-e7b54e0d8429"",
+                    ""path"": ""<Keyboard>/backquote"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""ToggleConsole"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -391,6 +431,8 @@ namespace TarodevController
             m_Player_Dash = m_Player.FindAction("Dash", throwIfNotFound: true);
             m_Player_Attack = m_Player.FindAction("Attack", throwIfNotFound: true);
             m_Player_ExampleAction = m_Player.FindAction("ExampleAction", throwIfNotFound: true);
+            m_Player_OpenMenu = m_Player.FindAction("OpenMenu", throwIfNotFound: true);
+            m_Player_ToggleConsole = m_Player.FindAction("ToggleConsole", throwIfNotFound: true);
         }
 
         ~@PlayerInputActions()
@@ -462,6 +504,8 @@ namespace TarodevController
         private readonly InputAction m_Player_Dash;
         private readonly InputAction m_Player_Attack;
         private readonly InputAction m_Player_ExampleAction;
+        private readonly InputAction m_Player_OpenMenu;
+        private readonly InputAction m_Player_ToggleConsole;
         public struct PlayerActions
         {
             private @PlayerInputActions m_Wrapper;
@@ -471,6 +515,8 @@ namespace TarodevController
             public InputAction @Dash => m_Wrapper.m_Player_Dash;
             public InputAction @Attack => m_Wrapper.m_Player_Attack;
             public InputAction @ExampleAction => m_Wrapper.m_Player_ExampleAction;
+            public InputAction @OpenMenu => m_Wrapper.m_Player_OpenMenu;
+            public InputAction @ToggleConsole => m_Wrapper.m_Player_ToggleConsole;
             public InputActionMap Get() { return m_Wrapper.m_Player; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -495,6 +541,12 @@ namespace TarodevController
                 @ExampleAction.started += instance.OnExampleAction;
                 @ExampleAction.performed += instance.OnExampleAction;
                 @ExampleAction.canceled += instance.OnExampleAction;
+                @OpenMenu.started += instance.OnOpenMenu;
+                @OpenMenu.performed += instance.OnOpenMenu;
+                @OpenMenu.canceled += instance.OnOpenMenu;
+                @ToggleConsole.started += instance.OnToggleConsole;
+                @ToggleConsole.performed += instance.OnToggleConsole;
+                @ToggleConsole.canceled += instance.OnToggleConsole;
             }
 
             private void UnregisterCallbacks(IPlayerActions instance)
@@ -514,6 +566,12 @@ namespace TarodevController
                 @ExampleAction.started -= instance.OnExampleAction;
                 @ExampleAction.performed -= instance.OnExampleAction;
                 @ExampleAction.canceled -= instance.OnExampleAction;
+                @OpenMenu.started -= instance.OnOpenMenu;
+                @OpenMenu.performed -= instance.OnOpenMenu;
+                @OpenMenu.canceled -= instance.OnOpenMenu;
+                @ToggleConsole.started -= instance.OnToggleConsole;
+                @ToggleConsole.performed -= instance.OnToggleConsole;
+                @ToggleConsole.canceled -= instance.OnToggleConsole;
             }
 
             public void RemoveCallbacks(IPlayerActions instance)
@@ -583,6 +641,8 @@ namespace TarodevController
             void OnDash(InputAction.CallbackContext context);
             void OnAttack(InputAction.CallbackContext context);
             void OnExampleAction(InputAction.CallbackContext context);
+            void OnOpenMenu(InputAction.CallbackContext context);
+            void OnToggleConsole(InputAction.CallbackContext context);
         }
     }
 }

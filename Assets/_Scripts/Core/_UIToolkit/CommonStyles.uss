@@ -39,15 +39,13 @@
 .common__text-highlight {
     color: var(--color-highlight);
     font-size: var(--font-size-normal);
-    -unity-font-definition: initial;
-    -unity-font: url('project://database/Assets/Art/Fonts/LuckiestGuy.ttf?fileID=12800000&guid=66f49d41b3cd153439f46cd983e62905&type=3#LuckiestGuy');
+    -unity-font-definition: url("project://database/Assets/Plugins/Feel/MMTools/Demos/MMTween/Fonts/Lato/TTF/Lato-Regular.ttf?fileID=12800000&guid=5686e06ef14cf104b8e282ee7c41b9a6&type=3#Lato-Regular");
 }
 
 .common__text-highlight-orange {
     color: var(--color-highlight-orange);
     font-size: var(--font-size-normal);
-    -unity-font-definition: initial;
-    -unity-font: url('project://database/Assets/Art/Fonts/LuckiestGuy.ttf?fileID=12800000&guid=66f49d41b3cd153439f46cd983e62905&type=3#LuckiestGuy');
+    -unity-font-definition: url("project://database/Assets/Plugins/Feel/MMTools/Demos/MMTween/Fonts/Lato/TTF/Lato-Regular.ttf?fileID=12800000&guid=5686e06ef14cf104b8e282ee7c41b9a6&type=3#Lato-Regular");
 }
 
 .common__button-basic {
@@ -94,8 +92,7 @@
     transition-property: all;
     transition-duration: 0.5s;
     transition-timing-function: ease-in-out-sine;
-    -unity-font-definition: initial;
-    -unity-font: url('project://database/Assets/Art/Fonts/LuckiestGuy.ttf?fileID=12800000&guid=66f49d41b3cd153439f46cd983e62905&type=3#LuckiestGuy');
+    -unity-font-definition: url("project://database/Assets/Plugins/Feel/MMTools/Demos/MMTween/Fonts/Lato/TTF/Lato-Regular.ttf?fileID=12800000&guid=5686e06ef14cf104b8e282ee7c41b9a6&type=3#Lato-Regular");
 }
 
 .common__button:hover {
@@ -148,8 +145,7 @@
 .common__full-screen-title {
     font-size: var(--font-size-large);
     opacity: 0;
-    -unity-font-definition: initial;
-    -unity-font: url('project://database/Assets/Art/Fonts/LuckiestGuy.ttf?fileID=12800000&guid=66f49d41b3cd153439f46cd983e62905&type=3#LuckiestGuy');
+    -unity-font-definition: url("project://database/Assets/Plugins/Feel/MMTools/Demos/MMTween/Fonts/Lato/TTF/Lato-Black.ttf?fileID=12800000&guid=462a5605cd4f4de48821603c760ce4a6&type=3#Lato-Black");
     margin-top: 40px;
 }
 

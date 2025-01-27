@@ -19614,7 +19614,7 @@ AudioSource:
   m_GameObject: {fileID: 3054942120376258709}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -3165942800488051908, guid: 7d63f9d15c6071a49a1986d018d4d5c2, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 0
@@ -19766,9 +19766,10 @@ GameObject:
   - component: {fileID: 3054942120541986088}
   - component: {fileID: 537198729}
   - component: {fileID: 5731089695359280883}
+  - component: {fileID: 5757743974529886367}
   m_Layer: 3
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -19802,6 +19803,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c89b8855ab650ac489f1f1b5f2a94751, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerDeathSound: {fileID: 11400000, guid: 22fc3e4dd84435646afae3c98165fd9e, type: 2}
   IsMovingDisabled: 0
   <Stats>k__BackingField: {fileID: 11400000, guid: 894dfe33661263b42a8e1490d64c0424, type: 2}
   _drawGizmos: 1
@@ -19915,6 +19917,14 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0.5}
   m_Size: {x: 0.76, y: 0.96}
   m_Direction: 0
+--- !u!81 &5757743974529886367
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3054942120541986084}
+  m_Enabled: 1
 --- !u!1 &3054942120628204824
 GameObject:
   m_ObjectHideFlags: 0

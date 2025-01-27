@@ -4902,7 +4902,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1130218518612699867, guid: 44d7a97dd12d1174797500a8d87c1fc3, type: 3}
       propertyPath: m_Name
-      value: Destructible Block 1
+      value: Destructible Block
       objectReference: {fileID: 0}
     - target: {fileID: 1423205061463515278, guid: 44d7a97dd12d1174797500a8d87c1fc3, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4984,6 +4984,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c75df411bd7758144ad4b11393e80b78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _sound: {fileID: 11400000, guid: 4e5b03eb836109440bcc13c3139dadcf, type: 2}
   _particles: {fileID: 442851014206637450}
 --- !u!4 &8494978169551304972 stripped
 Transform:

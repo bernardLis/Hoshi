@@ -1,11 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using Hoshi.Core;
 using UnityEngine;
 
-namespace Hoshi
+namespace Hoshi.Floating_Game
 {
     public class PanelScroller : MonoBehaviour
     {

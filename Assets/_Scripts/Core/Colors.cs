@@ -1,5 +1,3 @@
-﻿using UnityEngine;
-
-namespace Hoshi.Core
+﻿namespace Hoshi.Core
 {
 }

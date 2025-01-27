@@ -10,11 +10,15 @@ namespace Hoshi
     {
         #region MyRegion
 
+        [SerializeField] Sound _playerDeathSound;
+
+        AudioManager _audioManager;
         PlatformerManager _platformerManager;
         public bool IsMovingDisabled;
 
         void Start()
         {
+            _audioManager = AudioManager.Instance;
             _platformerManager = PlatformerManager.Instance;
             _platformerManager.OnResetLevel += Reset;
         }
@@ -23,6 +27,12 @@ namespace Hoshi
         {
             // check if player falls and reset their position
             if (transform.position.y > -10) return;
+            PlayerDeath();
+        }
+
+        public void PlayerDeath()
+        {
+            _audioManager.CreateSound().WithSound(_playerDeathSound).Play();
             _platformerManager.ResetLevel();
         }
 

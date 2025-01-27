@@ -1,6 +1,5 @@
 using System;
 using Hoshi.Core;
-using UnityEngine;
 using UnityEngine.UIElements;
 
 namespace Hoshi

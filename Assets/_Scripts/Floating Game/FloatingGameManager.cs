@@ -5,15 +5,16 @@ using DG.Tweening;
 using Hoshi.Core;
 using Unity.Cinemachine;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 using UnityEngine.UIElements;
 
-namespace Hoshi
+namespace Hoshi.Floating_Game
 {
     public class FloatingGameManager : Singleton<FloatingGameManager>
     {
         const string _ussCommonSongTitleLetter = "common__song-title-letter";
 
-        BoxCollider2D _boxCollider2D;
+        [SerializeField] Light2D _globalLight;
 
         [SerializeField] PlayerStats _playerStats;
 
@@ -23,11 +24,18 @@ namespace Hoshi
         [SerializeField] GameObject[] _walls;
 
         [Header("Audio")]
+        [SerializeField] Sound _doubleJumpUnlockedSound;
+
         [SerializeField] AudioSource _tadabadaSource;
 
         [SerializeField] AudioSource _floatingGameSource;
 
+
+        AudioManager _audioManager;
+
         PlayerController _playerController;
+
+        BoxCollider2D _boxCollider2D;
 
         VisualElement _root;
         Label _artistsLabel;
@@ -44,6 +52,8 @@ namespace Hoshi
 
         void Start()
         {
+            _audioManager = AudioManager.Instance;
+
             _root = PlatformerManager.Instance.GetComponent<UIDocument>().rootVisualElement;
             _artistsLabel = _root.Q<Label>("artistsLabel");
             _songTitleContainerTop = _root.Q<VisualElement>("songTitleContainerTop");
@@ -72,38 +82,45 @@ namespace Hoshi
             if (_isFloatingGameStarted) return;
             _isFloatingGameStarted = true;
 
-            GetComponent<MusicFrequencyManager>().Initialize();
+            //  GetComponent<MusicFrequencyManager>().Initialize();
+
+            //    DOTween.To(x => _globalLight.intensity = x, _globalLight.intensity, 0f, 5f)
+            //       .SetEase(Ease.InOutSine);
 
             _tadabadaSource.Stop();
             _floatingGameSource.Play();
 
-            StartCoroutine(FloatingGameSetupCoroutine());
+            // HERE:     StartCoroutine(FloatingGameSetupCoroutine());
             StartCoroutine(FinishGameCoroutine());
         }
 
         IEnumerator FinishGameCoroutine()
         {
-            yield return new WaitForSeconds(170f);
-            OnFloatingGame10SecondsUntilFinished?.Invoke();
-            yield return new WaitForSeconds(10f);
+            // HERE:    yield return new WaitForSeconds(170f);
+            // HERE:     OnFloatingGame10SecondsUntilFinished?.Invoke();
+            // HERE:       DOTween.To(x => _globalLight.intensity = x, _globalLight.intensity, 1f, 10f)
+            // HERE:           .SetEase(Ease.InOutSine);
 
-            _floatingPlayerController.DisableMovement();
-            _floatingGameCamera.transform.DOMoveY(1.2f, 4f);
-            _floatingPlayerController.transform.DOMoveY(-4.5f, 4f);
-            yield return new WaitForSeconds(4f);
-            _floatingGameCamera.Priority = -1;
-            _playerController.transform.position = _floatingPlayerController.transform.position;
-            _floatingPlayerController.gameObject.SetActive(false);
-            _playerController.gameObject.SetActive(true);
+            // HERE:       yield return new WaitForSeconds(10f);
 
+            //  _floatingPlayerController.DisableMovement();
+            //  _floatingGameCamera.transform.DOMoveY(1.2f, 4f);
+            //  _floatingPlayerController.transform.DOMoveY(-4.5f, 4f);
+            //  yield return new WaitForSeconds(4f);
+            //  _floatingGameCamera.Priority = -1;
+            //  _playerController.transform.position = _floatingPlayerController.transform.position;
+            //  _floatingPlayerController.gameObject.SetActive(false);
+            //  _playerController.gameObject.SetActive(true);
 
-            GetComponent<MusicFrequencyManager>().Stop();
-            _walls[0].SetActive(false);
+            //     GetComponent<MusicFrequencyManager>().Stop();
 
             _playerStats.MaxAirJumps = 1;
             DisplayDoubleJumpText();
 
+            _walls[1].SetActive(false);
+
             OnFloatingGameFinished?.Invoke(_playerController.transform.position);
+            yield return null;
         }
 
         void DisplayDoubleJumpText()
@@ -111,7 +128,10 @@ namespace Hoshi
             _doubleJumpContainer.style.opacity = 0;
             _doubleJumpContainer.style.display = DisplayStyle.Flex;
             DOTween.To(x => _doubleJumpContainer.style.opacity = x,
-                _doubleJumpContainer.style.opacity.value, 1, 0.5f).SetDelay(2f);
+                _doubleJumpContainer.style.opacity.value, 1, 0.5f).SetDelay(2f).OnComplete(() =>
+            {
+                _audioManager.CreateSound().WithSound(_doubleJumpUnlockedSound).Play();
+            });
 
             DOTween.To(x => _doubleJumpContainer.style.opacity = x,
                     _doubleJumpContainer.style.opacity.value, 0, 0.5f)

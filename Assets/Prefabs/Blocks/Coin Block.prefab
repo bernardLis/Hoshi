@@ -4980,10 +4980,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a11a7683a384d74b717ffad4fde6963, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _sound: {fileID: 11400000, guid: a424711ff99270147af7f97ad3a7beb8, type: 2}
   _activeBlockSprite: {fileID: -4587440361799113373, guid: 2ed10c8ffc72eb146a818ea3fa0d723d, type: 3}
   _spentBlockSprite: {fileID: -15715319960513441, guid: 2ed10c8ffc72eb146a818ea3fa0d723d, type: 3}
   _coins: 1
   _particles: {fileID: 1051160920414921802}
+  _coinCollectSound: {fileID: 11400000, guid: 84e11111a7196fc46830edc061d47f46, type: 2}
 --- !u!4 &8143955029960811858 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1423205061463515278, guid: 44d7a97dd12d1174797500a8d87c1fc3, type: 3}

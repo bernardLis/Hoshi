@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using Hoshi.Core;
 using UnityEngine;
 
-namespace Hoshi
+namespace Hoshi.Floating_Game
 {
     public class ParticleEffectsController : MonoBehaviour
     {

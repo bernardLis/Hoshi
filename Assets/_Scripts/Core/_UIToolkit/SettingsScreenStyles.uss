@@ -1,33 +1,22 @@
 .settings-screen__main {
     align-items: center;
+    -unity-font-definition: url("project://database/Assets/Plugins/Feel/MMTools/Demos/MMTween/Fonts/Lato/TTF/Lato-Regular.ttf?fileID=12800000&guid=5686e06ef14cf104b8e282ee7c41b9a6&type=3#Lato-Regular");
 }
 
 .settings-screen__ui-container {
     min-width: 600px;
     align-items: flex-start;
     padding: 12px;
+    -unity-font-definition: url("project://database/Assets/Plugins/Feel/MMTools/Demos/MMTween/Fonts/Lato/TTF/Lato-Regular.ttf?fileID=12800000&guid=5686e06ef14cf104b8e282ee7c41b9a6&type=3#Lato-Regular");
 }
 
 .settings-screen__title {
     font-size: 36px;
+    -unity-font-definition: url("project://database/Assets/Plugins/Feel/MMTools/Demos/MMTween/Fonts/Lato/TTF/Lato-Black.ttf?fileID=12800000&guid=462a5605cd4f4de48821603c760ce4a6&type=3#Lato-Black");
 }
 
 .settings-screen__volume-slider .unity-base-slider__tracker {
-    /*    background-image: url('project://database/Assets/Plugins/Medival Kingdom Package/Classic_Skin/UI_elements_C/Bar_separator_little.png');
-       */
     height: 6px;
     background-color: var(--color-white);
-
+    -unity-font-definition: url("project://database/Assets/Plugins/Feel/MMTools/Demos/MMTween/Fonts/Lato/TTF/Lato-Regular.ttf?fileID=12800000&guid=5686e06ef14cf104b8e282ee7c41b9a6&type=3#Lato-Regular");
 }
-
-/*
-.settings-screen__volume-slider .unity-base-slider__dragger {
-    /*  background-image: url('project://database/Assets/Plugins/Medival Kingdom Package/Settings_elements/Metal_frame_options_arrow.png');
-
-    border-radius: 0;
-    border-width: 0;
-    height: 15px;
-    margin: -7px 0 0 0;
-    background-color: var(--color-primary-dark);
-}
-*/

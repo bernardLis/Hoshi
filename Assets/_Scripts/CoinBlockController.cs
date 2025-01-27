@@ -1,3 +1,4 @@
+using Hoshi.Core;
 using UnityEngine;
 
 namespace Hoshi
@@ -9,6 +10,8 @@ namespace Hoshi
 
         [SerializeField] int _coins;
         [SerializeField] GameObject _particles;
+
+        [SerializeField] Sound _coinCollectSound;
 
         int _currentCoins;
         ParticleSystem _particleSystem;
@@ -25,8 +28,10 @@ namespace Hoshi
         protected override void CollisionWithPlayer()
         {
             base.CollisionWithPlayer();
+
             if (_currentCoins == 0) return;
 
+            AudioManager.CreateSound().WithSound(_coinCollectSound).WithPosition(transform.position).Play();
             _particleSystem.Play();
             PlatformerManager.ChangeCoin(1);
             _currentCoins--;

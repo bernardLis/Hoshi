@@ -14,7 +14,6 @@ namespace Hoshi.Core
 
             Content.Add(new ContinueButton(callback: Hide));
             AddSettingsButton();
-            AddMainMenuButton();
             AddQuitButton();
         }
 

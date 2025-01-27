@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 065741f211816d748b537bfd6044a669, type: 3}
+  m_Name: Gumba Death
+  m_EditorClassIdentifier: 
+  Id: 7cf5d9c9-ffab-43a9-9de6-12ab64f300ee
+  Clips:
+  - {fileID: 8300000, guid: 2ae2c5d9a3c038843947be0a8eafa1bd, type: 3}
+  Volume: 0.8
+  Pitch: 1.5
+  IsPitchRandomized: 1
+  PitchRange: {x: 1, y: 3}
+  Loop: 0
+  PlayOnAwake: 1
+  MaxDistance: 50
+  IsFrequentSound: 1
+  MixerGroup: {fileID: -3165942800488051908, guid: 7d63f9d15c6071a49a1986d018d4d5c2, type: 2}

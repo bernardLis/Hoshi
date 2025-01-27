@@ -27,7 +27,7 @@
                     "name": "Dash",
                     "type": "Button",
                     "id": "4a78c075-3464-45ca-8581-812805a2fdf7",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -45,6 +45,24 @@
                     "name": "ExampleAction",
                     "type": "Button",
                     "id": "fac85392-9cd4-4c47-a8da-8911e5b74689",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "OpenMenu",
+                    "type": "Button",
+                    "id": "106c2ece-d0fd-4bed-8b2c-dee0b8c72875",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ToggleConsole",
+                    "type": "Button",
+                    "id": "73794e63-ded8-401d-ad02-bfbf2a576a7c",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -291,6 +309,28 @@
                     "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "ExampleAction",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1efe882f-28a9-47d8-b75c-5e40db93f7b0",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "OpenMenu",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "65559776-ae66-40ee-87c8-e7b54e0d8429",
+                    "path": "<Keyboard>/backquote",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "ToggleConsole",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
