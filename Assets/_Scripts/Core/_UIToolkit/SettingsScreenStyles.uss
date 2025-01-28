@@ -6,6 +6,7 @@
 .settings-screen__ui-container {
     min-width: 600px;
     align-items: flex-start;
+    width: 100%;
     padding: 12px;
     -unity-font-definition: url("project://database/Assets/Plugins/Feel/MMTools/Demos/MMTween/Fonts/Lato/TTF/Lato-Regular.ttf?fileID=12800000&guid=5686e06ef14cf104b8e282ee7c41b9a6&type=3#Lato-Regular");
 }
