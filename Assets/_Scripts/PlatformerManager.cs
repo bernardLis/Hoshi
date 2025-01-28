@@ -32,10 +32,10 @@ namespace Hoshi
 
         public void ResetLevel()
         {
+            OnResetLevel?.Invoke();
+
             SetCoin(0);
             SetScore(0);
-
-            OnResetLevel?.Invoke();
         }
 
         public void ChangeScore(int change)
@@ -47,6 +47,11 @@ namespace Hoshi
         {
             _score = score;
             _scoreValueElement.ChangeAmount(_score);
+        }
+
+        public int GetScore()
+        {
+            return _score;
         }
 
         public void ChangeCoin(int change)

@@ -10,13 +10,13 @@ namespace Hoshi.Core
         {
             SetTitle("Menu");
 
-            AddEndMarketButton();
-
             Content.Add(new ContinueButton(callback: Hide));
             AddLeaderboardButton();
             AddSettingsButton();
+            AddResetButton();
             AddQuitButton();
         }
+
 
         void AddLeaderboardButton()
         {
@@ -24,22 +24,22 @@ namespace Hoshi.Core
             Content.Add(leaderboardButton);
         }
 
-        void AddEndMarketButton()
-        {
-            Scene scene = SceneManager.GetActiveScene();
-            if (scene.name != Scenes.Market)
-                return;
-
-            VisualElement spacer = new();
-            spacer.AddToClassList(USSCommonHorizontalSpacer);
-            Content.Add(spacer);
-        }
-
         void AddSettingsButton()
         {
             MyButton settingsButton = new("Settings", USSCommonButton, () => new SettingsScreen());
             Content.Add(settingsButton);
         }
+
+        void AddResetButton()
+        {
+            MyButton resetButton = new("Reset", USSCommonButton, () =>
+            {
+                Hide();
+                OnHide += () => GameManager.LoadScene(Scenes.Game);
+            });
+            Content.Add(resetButton);
+        }
+
 
         void AddMainMenuButton()
         {

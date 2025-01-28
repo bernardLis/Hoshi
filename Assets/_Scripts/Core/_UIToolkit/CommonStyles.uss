@@ -193,3 +193,27 @@
     height: 90%;
     width: 20%;
 }
+
+.common__text-field {
+}
+
+.common__text-field Label {
+    color: white;
+}
+
+.common__text-field Label :active {
+    color: white;
+}
+
+.common__text-field Label :focus {
+    color: white;
+}
+
+
+.common__text-field TextInput {
+    min-width: 100px;
+}
+
+.common__text-field TextElement {
+    color: black;
+}
