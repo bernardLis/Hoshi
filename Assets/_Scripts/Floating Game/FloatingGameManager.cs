@@ -30,7 +30,6 @@ namespace Hoshi.Floating_Game
 
         [SerializeField] AudioSource _floatingGameSource;
 
-
         AudioManager _audioManager;
 
         PlayerController _playerController;
@@ -82,37 +81,37 @@ namespace Hoshi.Floating_Game
             if (_isFloatingGameStarted) return;
             _isFloatingGameStarted = true;
 
-            //  GetComponent<MusicFrequencyManager>().Initialize();
+            GetComponent<MusicFrequencyManager>().Initialize();
 
-            //    DOTween.To(x => _globalLight.intensity = x, _globalLight.intensity, 0f, 5f)
-            //       .SetEase(Ease.InOutSine);
+            DOTween.To(x => _globalLight.intensity = x, _globalLight.intensity, 0f, 5f)
+                .SetEase(Ease.InOutSine);
 
             _tadabadaSource.Stop();
             _floatingGameSource.Play();
 
-            // HERE:     StartCoroutine(FloatingGameSetupCoroutine());
+            StartCoroutine(FloatingGameSetupCoroutine());
             StartCoroutine(FinishGameCoroutine());
         }
 
         IEnumerator FinishGameCoroutine()
         {
-            // HERE:    yield return new WaitForSeconds(170f);
-            // HERE:     OnFloatingGame10SecondsUntilFinished?.Invoke();
-            // HERE:       DOTween.To(x => _globalLight.intensity = x, _globalLight.intensity, 1f, 10f)
-            // HERE:           .SetEase(Ease.InOutSine);
+            yield return new WaitForSeconds(175f);
+            OnFloatingGame10SecondsUntilFinished?.Invoke();
+            DOTween.To(x => _globalLight.intensity = x, _globalLight.intensity, 1f, 10f)
+                .SetEase(Ease.InOutSine);
 
-            // HERE:       yield return new WaitForSeconds(10f);
+            yield return new WaitForSeconds(10f);
 
-            //  _floatingPlayerController.DisableMovement();
-            //  _floatingGameCamera.transform.DOMoveY(1.2f, 4f);
-            //  _floatingPlayerController.transform.DOMoveY(-4.5f, 4f);
-            //  yield return new WaitForSeconds(4f);
-            //  _floatingGameCamera.Priority = -1;
-            //  _playerController.transform.position = _floatingPlayerController.transform.position;
-            //  _floatingPlayerController.gameObject.SetActive(false);
-            //  _playerController.gameObject.SetActive(true);
+            _floatingPlayerController.DisableMovement();
+            _floatingGameCamera.transform.DOMoveY(1.2f, 4f);
+            _floatingPlayerController.transform.DOMoveY(-4.5f, 4f);
+            yield return new WaitForSeconds(4f);
+            _floatingGameCamera.Priority = -1;
+            _playerController.transform.position = _floatingPlayerController.transform.position;
+            _floatingPlayerController.gameObject.SetActive(false);
+            _playerController.gameObject.SetActive(true);
 
-            //     GetComponent<MusicFrequencyManager>().Stop();
+            GetComponent<MusicFrequencyManager>().Stop();
 
             _playerStats.MaxAirJumps = 1;
             DisplayDoubleJumpText();
@@ -120,6 +119,8 @@ namespace Hoshi.Floating_Game
             _walls[1].SetActive(false);
 
             OnFloatingGameFinished?.Invoke(_playerController.transform.position);
+
+
             yield return null;
         }
 

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4664605144599945673}
   - component: {fileID: 5447939931453369225}
   - component: {fileID: 8313734026015456768}
+  - component: {fileID: -6908179448790213687}
   m_Layer: 3
   m_Name: Floating Player
   m_TagString: Untagged
@@ -135,6 +136,14 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!81 &-6908179448790213687
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2936287941125742465}
+  m_Enabled: 1
 --- !u!1 &7694027653357219041
 GameObject:
   m_ObjectHideFlags: 0

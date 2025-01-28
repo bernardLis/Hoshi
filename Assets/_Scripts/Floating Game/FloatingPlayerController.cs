@@ -41,6 +41,7 @@ namespace Hoshi.Floating_Game
 
         public void DisableMovement()
         {
+            _rigidbody2D.linearVelocity = Vector2.zero;
             _movementDisabled = true;
         }
     }
