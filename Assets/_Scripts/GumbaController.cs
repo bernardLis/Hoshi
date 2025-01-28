@@ -73,6 +73,9 @@ namespace Hoshi
 
             if (isKilledByPlayer)
             {
+                Vector3 position = transform.position;
+                position.y -= 0.09f;
+                transform.position = position;
                 _audioManager.CreateSound().WithSound(_deathSound).WithPosition(transform.position).Play();
                 _platformerManager.ChangeScore(100);
                 DisplayFloatingText("100", Color.white);
@@ -119,11 +122,12 @@ namespace Hoshi
                 if (cancellationToken.IsCancellationRequested) break;
 
                 bool isGrounded = Physics2D.Raycast(transform.position, Vector2.down,
-                    0.54f, LayerMask.GetMask("Default"));
-                Debug.DrawRay(transform.position, Vector2.down * 0.54f, Color.red, 0.1f);
+                    0.42f, LayerMask.GetMask("Default"));
 
                 // check if is grounded, otherwise fall
                 Vector3 move = transform.right * _speed;
+                if (transform.position.y > -4.65f) move.y = 1f;
+
                 if (!isGrounded) move.y = 10f;
 
                 _rigidbody.MovePosition(transform.position - move * Time.fixedDeltaTime);
