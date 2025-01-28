@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Hoshi
 {
-    public class GameFinisherController : MonoBehaviour
+    public class GameEndController : MonoBehaviour
     {
         void OnTriggerEnter2D(Collider2D other)
         {

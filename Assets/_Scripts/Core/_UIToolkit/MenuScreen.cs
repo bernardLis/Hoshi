@@ -13,8 +13,15 @@ namespace Hoshi.Core
             AddEndMarketButton();
 
             Content.Add(new ContinueButton(callback: Hide));
+            AddLeaderboardButton();
             AddSettingsButton();
             AddQuitButton();
+        }
+
+        void AddLeaderboardButton()
+        {
+            MyButton leaderboardButton = new("Leaderboard", USSCommonButton, () => new LeaderboardScreen());
+            Content.Add(leaderboardButton);
         }
 
         void AddEndMarketButton()

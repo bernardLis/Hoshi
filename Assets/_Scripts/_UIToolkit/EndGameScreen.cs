@@ -11,7 +11,6 @@ namespace Hoshi
             AddContinueButton();
             AddResetButton();
             AddQuitButton();
-            
         }
 
         void AddQuitButton()
